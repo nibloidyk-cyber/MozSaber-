@@ -1,7 +1,24 @@
 /* =========================================================
-   MOZSABER — NOVO LAYOUT
-   Modelo baseado no segundo design escolhido
-========================================================= */
+   MOZSABER — ESTILO PRINCIPAL
+   ========================================================= */
+
+:root {
+    --verde: #159447;
+    --verde-escuro: #0d7536;
+    --azul: #102d55;
+    --azul-claro: #1d477d;
+    --fundo: #f4f7f5;
+    --branco: #ffffff;
+    --texto: #1d2935;
+    --cinza: #6b7280;
+    --borda: #dce3e8;
+    --vermelho: #c62828;
+    --sombra: 0 8px 25px rgba(16, 45, 85, 0.08);
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
 
 * {
     box-sizing: border-box;
@@ -9,783 +26,533 @@
     padding: 0;
 }
 
-:root {
-    --verde: #159447;
-    --verde-escuro: #08733b;
-    --azul: #102d55;
-    --azul-escuro: #071f3d;
-    --verde-claro: #eaf8f0;
-    --branco: #ffffff;
-    --cinza: #f5f7f8;
-    --cinza-texto: #667085;
-    --borda: #e5e7eb;
-}
-
-html {
-    scroll-behavior: smooth;
+html,
+body {
+    width: 100%;
+    min-height: 100%;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: var(--cinza);
-    color: var(--azul);
-    line-height: 1.5;
-    padding-bottom: 85px;
+    background: var(--fundo);
+    color: var(--texto);
+    overflow-x: hidden;
 }
 
-/* =========================================================
-   CABEÇALHO
-========================================================= */
-
-.cabecalho {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-
-    width: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 15px 22px;
-
-    background: var(--branco);
-
-    border-bottom: 1px solid var(--borda);
-
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+button,
+input,
+select {
+    font-family: inherit;
 }
 
-.logo {
-    font-size: 25px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    color: var(--azul);
-}
-
-.logo::first-letter {
-    color: var(--verde);
-}
-
-.btn-menu {
-    width: 45px;
-    height: 42px;
-
-    margin: 0;
-
-    padding: 0;
-
-    border: none;
-    border-radius: 10px;
-
-    background: transparent;
-    color: var(--azul);
-
-    font-size: 0;
-
+button {
     cursor: pointer;
 }
 
-.btn-menu::before {
-    content: "☰";
-
-    font-size: 29px;
-    font-weight: normal;
-}
-
 /* =========================================================
-   MENU
-========================================================= */
+   PÁGINAS
+   ========================================================= */
 
-.menu {
-    display: none;
-
-    position: sticky;
-    top: 73px;
-
-    z-index: 999;
-
-    background: white;
-
-    padding: 15px 22px;
-
-    border-bottom: 1px solid var(--borda);
-
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.menu.aberto {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.menu a {
-    color: var(--azul);
-    text-decoration: none;
-    font-weight: 600;
-    padding: 8px 0;
-}
-
-/* =========================================================
-   CONTEÚDO
-========================================================= */
-
-main {
+.pagina {
     width: 100%;
-    max-width: 1050px;
-    margin: 0 auto;
+    min-height: 100vh;
 }
 
-/* =========================================================
-   UTILIZADOR
-========================================================= */
+.pagina-interna {
+    display: none;
+    min-height: 100vh;
+    padding-bottom: 85px;
+}
 
-.utilizador-logado {
-    padding: 8px 20px;
-
-    background: var(--verde-claro);
-
-    color: var(--verde-escuro);
-
-    font-size: 14px;
-    font-weight: bold;
-
-    text-align: center;
+#paginaLogin {
+    display: block;
 }
 
 /* =========================================================
    LOGIN
-========================================================= */
+   ========================================================= */
 
-.acesso {
-    max-width: 500px;
-    margin: 25px auto !important;
-}
-
-.acesso h2 {
-    text-align: center;
-}
-
-.acesso button {
-    width: 100%;
-}
-
-#mensagemAcesso {
-    margin-top: 15px;
-    text-align: center;
-    font-weight: bold;
-}
-
-/* =========================================================
-   HERO / BANNER
-========================================================= */
-
-.hero {
-    position: relative;
-
-    margin: 18px 20px;
-
-    min-height: 285px;
-
-    padding: 45px 35px;
-
-    display: flex;
+.pagina-login {
+    min-height: 100vh;
+    display: flex !important;
     flex-direction: column;
     justify-content: center;
-
-    overflow: hidden;
-
-    border-radius: 28px;
-
+    align-items: center;
+    padding: 25px 18px;
     background:
-        radial-gradient(
-            circle at 85% 20%,
-            rgba(45, 190, 105, 0.35),
-            transparent 30%
-        ),
         linear-gradient(
-            120deg,
-            #082b50,
-            #123d61 55%,
-            #08733b
+            145deg,
+            #f4faf6 0%,
+            #ffffff 55%,
+            #eef7f1 100%
         );
-
-    color: white;
-
-    box-shadow: 0 8px 25px rgba(16, 45, 85, 0.18);
 }
 
-.hero::after {
-    content: "";
-    position: absolute;
-
-    width: 220px;
-    height: 220px;
-
-    right: -70px;
-    bottom: -90px;
-
-    border-radius: 50%;
-
-    border: 2px solid rgba(255, 255, 255, 0.14);
+.logo-area {
+    text-align: center;
+    margin-bottom: 28px;
 }
 
-.hero h1 {
-    position: relative;
-    z-index: 2;
-
-    font-size: clamp(32px, 6vw, 52px);
-
-    margin-bottom: 12px;
-
-    line-height: 1.05;
+.logo-area h1 {
+    color: var(--verde);
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
-.hero p {
-    position: relative;
-    z-index: 2;
+.logo-area p {
+    margin-top: 6px;
+    color: var(--cinza);
+    font-size: 14px;
+}
 
-    max-width: 500px;
+.card-login {
+    width: 100%;
+    max-width: 430px;
+    background: var(--branco);
+    border-radius: 18px;
+    padding: 28px 22px;
+    box-shadow: var(--sombra);
+    border: 1px solid #edf0f2;
+}
 
-    font-size: 17px;
-
+.card-login h2 {
+    color: var(--azul);
+    text-align: center;
+    font-size: 25px;
     margin-bottom: 7px;
-
-    color: rgba(255, 255, 255, 0.92);
 }
 
-.hero::before {
-    content: "✦";
-
-    position: absolute;
-
-    right: 70px;
-    top: 40px;
-
-    font-size: 70px;
-
-    color: rgba(255, 255, 255, 0.10);
+.descricao {
+    text-align: center;
+    color: var(--cinza);
+    font-size: 14px;
+    margin-bottom: 24px;
 }
 
 /* =========================================================
-   CARTÕES / ATALHOS
-========================================================= */
+   CABEÇALHO
+   ========================================================= */
 
-.cards {
-    display: grid;
+.cabecalho {
+    width: 100%;
+    background: var(--branco);
+    border-bottom: 1px solid var(--borda);
+    padding: 20px 18px;
+}
 
-    grid-template-columns: repeat(4, 1fr);
+.cabecalho h1 {
+    color: var(--azul);
+    font-size: 24px;
+    font-weight: 700;
+}
 
-    gap: 12px;
+.cabecalho p {
+    color: var(--cinza);
+    font-size: 13px;
+    margin-top: 5px;
+}
 
-    padding: 5px 20px 20px;
+/* =========================================================
+   CONTEÚDO
+   ========================================================= */
+
+.conteudo-pagina {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 22px 18px 30px;
 }
 
 .card {
-    min-height: 125px;
-
-    background: white;
-
-    padding: 20px 14px;
-
+    background: var(--branco);
     border-radius: 18px;
-
-    border: 1px solid var(--borda);
-
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
-
-    text-align: center;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.card:hover {
-    transform: translateY(-3px);
-
-    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.09);
-}
-
-.card h2 {
-    color: var(--azul);
-
-    font-size: 17px;
-
-    margin-bottom: 7px;
-}
-
-.card p {
-    color: var(--cinza-texto);
-
-    font-size: 13px;
+    padding: 23px 20px;
+    box-shadow: var(--sombra);
+    border: 1px solid #edf0f2;
 }
 
 /* =========================================================
-   SECÇÕES
-========================================================= */
-
-.secao {
-    background: white;
-
-    margin: 18px 20px;
-
-    padding: 25px;
-
-    border-radius: 20px;
-
-    border: 1px solid var(--borda);
-
-    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.05);
-}
-
-.secao h2 {
-    color: var(--azul);
-
-    font-size: 24px;
-
-    margin-bottom: 20px;
-}
-
-/* =========================================================
-   CONTA
-========================================================= */
-
-.conta-info {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 15px;
-
-    margin-bottom: 15px;
-}
-
-.credito-item {
-    padding: 18px;
-
-    background: var(--verde-claro);
-
-    border-radius: 15px;
-
-    border: 1px solid #d4efdf;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 5px;
-}
-
-.credito-item strong {
-    color: var(--azul);
-
-    font-size: 14px;
-}
-
-.credito-item span {
-    color: var(--verde-escuro);
-
-    font-size: 25px;
-
-    font-weight: 800;
-}
-
-.comprar-creditos {
-    margin-top: 20px;
-
-    padding-top: 20px;
-
-    border-top: 1px solid var(--borda);
-}
-
-.comprar-creditos h3 {
-    margin-bottom: 8px;
-}
-
-.comprar-creditos p {
-    color: var(--cinza-texto);
-
-    font-size: 14px;
-
-    margin-bottom: 12px;
-}
-
-.comprar-creditos button {
-    margin-right: 8px;
-}
-
-/* =========================================================
-   FORMULÁRIOS
-========================================================= */
+   CAMPOS
+   ========================================================= */
 
 label {
     display: block;
-
-    margin-top: 15px;
-    margin-bottom: 7px;
-
     color: var(--azul);
-
     font-size: 14px;
-
-    font-weight: 700;
+    font-weight: 600;
+    margin: 0 0 7px;
 }
 
 input,
 select {
     width: 100%;
-
-    padding: 13px 14px;
-
-    border: 1px solid #d5d9df;
-
-    border-radius: 11px;
-
-    background: white;
-
-    color: #1f2937;
-
+    min-height: 48px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    background: #ffffff;
+    color: var(--texto);
     font-size: 15px;
-
     outline: none;
-
-    transition:
-        border-color 0.2s,
-        box-shadow 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 input:focus,
 select:focus {
     border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(21, 148, 71, 0.10);
+}
 
-    box-shadow: 0 0 0 3px rgba(21, 148, 71, 0.12);
+input::placeholder {
+    color: #9aa3ad;
 }
 
 /* =========================================================
    BOTÕES
-========================================================= */
+   ========================================================= */
 
-button {
-    margin-top: 18px;
-
-    padding: 13px 22px;
-
-    border: none;
-
-    border-radius: 11px;
-
-    background: var(--verde);
-
-    color: white;
-
+.btn-principal,
+.btn-secundario,
+.btn-sair {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 10px;
     font-size: 15px;
-
     font-weight: 700;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.15s,
-        background 0.15s;
+    transition: 0.2s;
 }
 
-button:hover {
-    background: var(--verde-escuro);
-
-    transform: translateY(-1px);
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-/* =========================================================
-   GERADOR DE IA
-========================================================= */
-
-#planos {
-    border-top: 4px solid var(--verde);
-}
-
-#planos h2::before {
-    content: "✦ ";
-
-    color: var(--verde);
-}
-
-#gerarPlano {
-    width: 100%;
-
-    margin-top: 22px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--azul),
-            var(--verde)
-        );
-
-    font-size: 17px;
-
-    padding: 15px;
-}
-
-#gerarPlano:hover {
-    background:
-        linear-gradient(
-            90deg,
-            var(--azul-escuro),
-            var(--verde-escuro)
-        );
-}
-
-#mensagemPerfil,
-#mensagemGeracao,
-#mensagemConta,
-#mensagemCompra {
-    margin-top: 13px;
-
-    font-size: 14px;
-
-    font-weight: 600;
-}
-
-/* =========================================================
-   RESULTADO
-========================================================= */
-
-.resultado {
-    min-height: 200px;
-}
-
-#conteudoPlano {
-    white-space: pre-wrap;
-
-    background: #f7faf8;
-
-    padding: 20px;
-
-    border-radius: 14px;
-
-    border-left: 4px solid var(--verde);
-
-    color: #263238;
-
-    overflow-x: auto;
-}
-
-/* =========================================================
-   PERFIL
-========================================================= */
-
-#perfil {
-    position: relative;
-}
-
-#guardarPerfil {
-    width: 100%;
-
+.btn-principal {
+    border: none;
     background: var(--verde);
-}
-
-/* =========================================================
-   RODAPÉ
-========================================================= */
-
-footer {
-    margin-top: 35px;
-
-    padding: 30px 20px 100px;
-
-    background: var(--azul);
-
     color: white;
-
-    text-align: center;
 }
 
-footer p {
-    margin: 5px;
+.btn-principal:hover {
+    background: var(--verde-escuro);
+}
 
-    font-size: 13px;
+.btn-principal:active {
+    transform: scale(0.98);
+}
 
-    opacity: 0.85;
+.btn-secundario {
+    background: white;
+    color: var(--verde);
+    border: 1px solid var(--verde);
+}
+
+.btn-secundario:hover {
+    background: #f1faf4;
+}
+
+.btn-proximo {
+    margin-top: 5px;
+}
+
+.btn-sair {
+    margin-top: 18px;
+    background: #fff5f5;
+    border: 1px solid #f0cccc;
+    color: var(--vermelho);
 }
 
 /* =========================================================
-   NAVEGAÇÃO INFERIOR
-========================================================= */
+   SEPARADOR LOGIN
+   ========================================================= */
 
-body::after {
-    content: "⌂\A Início     Planos     Explorar     Comunidade     Mais";
+.separador {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 19px 0;
+    color: #9aa3ad;
+    font-size: 13px;
+}
 
-    white-space: pre;
+.separador::before,
+.separador::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--borda);
+}
 
+.separador span {
+    flex-shrink: 0;
+}
+
+/* =========================================================
+   MENSAGENS
+   ========================================================= */
+
+.mensagem {
+    min-height: 18px;
+    margin: -7px 0 12px;
+    color: var(--verde-escuro);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* =========================================================
+   BARRA INFERIOR
+   ========================================================= */
+
+.barra-inferior {
     position: fixed;
-
-    z-index: 2000;
-
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 1000;
 
     height: 68px;
 
     display: flex;
+    align-items: stretch;
+    justify-content: space-around;
 
-    align-items: center;
+    background: rgba(255, 255, 255, 0.98);
+    border-top: 1px solid var(--borda);
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.06);
+}
+
+.item-nav {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--azul);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 4px;
+}
+
+.item-nav:hover {
+    background: #f4faf6;
+    color: var(--verde);
+}
+
+.item-nav:active {
+    background: #edf8f1;
+}
+
+/* =========================================================
+   PAINÉIS
+   ========================================================= */
+
+.painel {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    background: rgba(10, 25, 40, 0.45);
+
+    align-items: flex-end;
     justify-content: center;
+}
+
+.painel.ativo {
+    display: flex;
+}
+
+.painel-conteudo {
+    position: relative;
+
+    width: 100%;
+    max-width: 600px;
 
     background: white;
 
-    border-top: 1px solid var(--borda);
+    border-radius: 22px 22px 0 0;
 
-    color: var(--azul);
+    padding: 25px 20px 30px;
 
-    font-size: 12px;
+    box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.15);
 
-    font-weight: 700;
-
-    text-align: center;
-
-    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.08);
-
-    pointer-events: none;
+    animation: subirPainel 0.2s ease-out;
 }
 
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 800px) {
-
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
+@keyframes subirPainel {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
     }
 
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.painel-conteudo h2 {
+    color: var(--azul);
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+.btn-fechar {
+    position: absolute;
+    right: 17px;
+    top: 13px;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f2f4f5;
+    color: var(--azul);
+
+    font-size: 24px;
+    line-height: 1;
+}
+
+.btn-fechar:hover {
+    background: #e8ecef;
+}
+
+.opcao-painel {
+    display: block;
+
+    width: 100%;
+    min-height: 48px;
+
+    margin-top: 10px;
+
+    padding: 12px 14px;
+
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+
+    background: white;
+
+    color: var(--texto);
+
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.opcao-painel:hover {
+    border-color: var(--verde);
+    background: #f4faf6;
+}
+
+.info-conta {
+    background: #f5faf7;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.info-conta p {
+    color: var(--texto);
+    font-size: 14px;
+    margin: 6px 0;
+}
+
+.info-conta strong {
+    color: var(--verde-escuro);
+}
+
+.autor-info {
+    padding: 15px;
+    margin-bottom: 12px;
+    background: #f5f8fc;
+    border-radius: 12px;
+}
+
+.autor-info h3 {
+    color: var(--azul);
+    margin-bottom: 7px;
+}
+
+.autor-info p {
+    color: var(--cinza);
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 /* =========================================================
-   TELEMÓVEL
-========================================================= */
+   RESULTADO
+   ========================================================= */
 
-@media (max-width: 600px) {
+.resultado-plano {
+    line-height: 1.6;
+    font-size: 15px;
+    white-space: normal;
+}
 
-    body {
-        padding-bottom: 78px;
+.resultado-plano h1,
+.resultado-plano h2,
+.resultado-plano h3 {
+    color: var(--azul);
+}
+
+/* =========================================================
+   TABLET / COMPUTADOR
+   ========================================================= */
+
+@media (min-width: 700px) {
+
+    .pagina-login {
+        padding: 40px;
+    }
+
+    .card-login {
+        padding: 32px;
     }
 
     .cabecalho {
-        padding: 12px 16px;
+        padding: 24px calc((100% - 700px) / 2 + 18px);
     }
 
-    .logo {
-        font-size: 22px;
+    .conteudo-pagina {
+        padding-top: 30px;
     }
 
-    .hero {
-        margin: 12px 14px;
-
-        min-height: 260px;
-
-        padding: 32px 25px;
-
-        border-radius: 23px;
+    .barra-inferior {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: 700px;
+        border-radius: 16px 16px 0 0;
     }
 
-    .hero h1 {
-        font-size: 34px;
+    .painel {
+        align-items: center;
     }
 
-    .hero p {
-        font-size: 15px;
+    .painel-conteudo {
+        border-radius: 18px;
+        max-width: 500px;
     }
-
-    .cards {
-        grid-template-columns: repeat(4, 1fr);
-
-        gap: 7px;
-
-        padding: 4px 14px 12px;
-    }
-
-    .card {
-        min-height: 105px;
-
-        padding: 15px 6px;
-
-        border-radius: 15px;
-    }
-
-    .card h2 {
-        font-size: 13px;
-    }
-
-    .card p {
-        display: none;
-    }
-
-    .secao {
-        margin: 13px 14px;
-
-        padding: 20px;
-
-        border-radius: 17px;
-    }
-
-    .secao h2 {
-        font-size: 21px;
-    }
-
-    .conta-info {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .comprar-creditos button {
-        width: 100%;
-
-        margin-right: 0;
-    }
-
-    .btn-menu {
-        width: 40px;
-        height: 40px;
-    }
-
-    .menu {
-        top: 65px;
-    }
-
 }
 
 /* =========================================================
-   TELEMÓVEL MUITO PEQUENO
-========================================================= */
+   ECRÃS PEQUENOS
+   ========================================================= */
 
-@media (max-width: 380px) {
+@media (max-width: 360px) {
 
-    .cards {
-        gap: 5px;
+    .logo-area h1 {
+        font-size: 29px;
     }
 
+    .card-login,
     .card {
-        padding: 12px 4px;
+        padding: 19px 16px;
     }
 
-    .card h2 {
+    .cabecalho h1 {
+        font-size: 21px;
+    }
+
+    .item-nav {
         font-size: 11px;
     }
-
-    .hero h1 {
-        font-size: 30px;
-    }
-
-    .conta-info {
-        grid-template-columns: 1fr;
-    }
-
 }

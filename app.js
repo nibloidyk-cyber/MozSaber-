@@ -1,10 +1,16 @@
-// ================================
+// ======================================================
+// MOZSABER — APP.JS
+// ======================================================
+
+
+// ======================================================
 // SUPABASE
-// ================================
+// ======================================================
 
 const SUPABASE_URL =
     "https://xkwszbbrgvhqwwzxamlm.supabase.co";
 
+// MANTENHA A SUA SUPABASE_KEY ATUAL AQUI
 const SUPABASE_KEY =
     "sb_publishable_72MmOUrvKDAXsmVza5HB3g_dgjDyjUZ";
 
@@ -15,9 +21,21 @@ const supabaseClient =
     );
 
 
-// ================================
+// ======================================================
 // ELEMENTOS
-// ================================
+// ======================================================
+
+const paginaLogin =
+    document.getElementById("paginaLogin");
+
+const paginaPerfil =
+    document.getElementById("paginaPerfil");
+
+const paginaGerador =
+    document.getElementById("paginaGerador");
+
+const paginaResultado =
+    document.getElementById("paginaResultado");
 
 const btnEntrar =
     document.getElementById("btnEntrar");
@@ -32,449 +50,86 @@ const gerarPlano =
     document.getElementById("gerarPlano");
 
 
-// ================================
-// MOSTRAR UTILIZADOR
-// ================================
+// ======================================================
+// NAVEGAÇÃO ENTRE PÁGINAS
+// ======================================================
 
-async function mostrarUtilizador() {
+function mostrarPagina(nomePagina) {
 
-    const area =
-        document.getElementById("utilizadorLogado");
+    const paginas = [
+        paginaLogin,
+        paginaPerfil,
+        paginaGerador,
+        paginaResultado
+    ];
 
-    if (!area) return;
+    paginas.forEach((pagina) => {
 
-    const {
-        data: { user },
-        error
-    } =
-        await supabaseClient.auth.getUser();
+        if (pagina) {
+            pagina.style.display = "none";
+        }
 
-    if (error || !user) {
+    });
 
-        area.innerHTML = "";
 
-        return;
+    if (nomePagina === "login" && paginaLogin) {
+        paginaLogin.style.display = "flex";
     }
 
-    const {
-        data: perfil,
-        error: erroPerfil
-    } =
-        await supabaseClient
-            .from("profiles")
-            .select("nome")
-            .eq("id", user.id)
-            .maybeSingle();
 
-    if (erroPerfil) {
-
-        console.error(
-            "Erro ao carregar nome:",
-            erroPerfil
-        );
+    if (nomePagina === "perfil" && paginaPerfil) {
+        paginaPerfil.style.display = "block";
     }
 
-    const nome =
-        perfil?.nome || user.email;
 
-    area.innerHTML = `
-        <div style="
-            padding: 15px;
-            background: white;
-            margin: 15px 25px;
-            border-radius: 8px;
-        ">
+    if (nomePagina === "gerador" && paginaGerador) {
+        paginaGerador.style.display = "block";
+    }
 
-            <strong>
-                Olá, ${nome}!
-            </strong>
 
-            <br>
+    if (nomePagina === "resultado" && paginaResultado) {
+        paginaResultado.style.display = "block";
+    }
 
-            <span>
-                Conta autenticada
-            </span>
 
-            <br><br>
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
 
-            <button id="btnSair">
-                Sair
-            </button>
 
-        </div>
-    `;
+// ======================================================
+// MENSAGEM DE LOGIN
+// ======================================================
 
-    const btnSair =
-        document.getElementById("btnSair");
+function mostrarMensagemAcesso(texto) {
 
-    if (btnSair) {
+    const mensagem =
+        document.getElementById("mensagemAcesso");
 
-        btnSair.addEventListener(
-            "click",
-            async () => {
-
-                const {
-                    error
-                } =
-                    await supabaseClient
-                        .auth.signOut();
-
-                if (error) {
-
-                    console.error(
-                        "Erro ao sair:",
-                        error
-                    );
-
-                    return;
-                }
-
-                window.location.reload();
-            }
-        );
+    if (mensagem) {
+        mensagem.textContent = texto;
     }
 }
 
 
-// ================================
-// MINHA CONTA
-// ================================
-
-async function carregarConta() {
-
-    const planosGratis =
-        document.getElementById(
-            "planosGratis"
-        );
-
-    const creditosPagos =
-        document.getElementById(
-            "creditosPagos"
-        );
-
-    const mensagemConta =
-        document.getElementById(
-            "mensagemConta"
-        );
-
-    if (!planosGratis || !creditosPagos) {
-
-        console.error(
-            "Elementos da conta não encontrados."
-        );
-
-        return;
-    }
-
-    const {
-        data: { user },
-        error: erroSessao
-    } =
-        await supabaseClient.auth.getUser();
-
-    if (erroSessao || !user) {
-
-        planosGratis.textContent = "--";
-        creditosPagos.textContent = "--";
-
-        return;
-    }
-
-    const {
-        data: perfil,
-        error
-    } =
-        await supabaseClient
-            .from("profiles")
-            .select(
-                "planos_gratis_usados, creditos"
-            )
-            .eq(
-                "id",
-                user.id
-            )
-            .maybeSingle();
-
-    if (error) {
-
-        console.error(
-            "Erro ao carregar conta:",
-            error
-        );
-
-        planosGratis.textContent = "--";
-        creditosPagos.textContent = "--";
-
-        if (mensagemConta) {
-
-            mensagemConta.textContent =
-                "Não foi possível carregar os dados da conta.";
-        }
-
-        return;
-    }
-
-    if (!perfil) {
-
-        planosGratis.textContent = "--";
-        creditosPagos.textContent = "--";
-
-        return;
-    }
-
-    const usados =
-        Number(
-            perfil.planos_gratis_usados || 0
-        );
-
-    const creditos =
-        Number(
-            perfil.creditos || 0
-        );
-
-    const restantes =
-        Math.max(
-            0,
-            3 - usados
-        );
-
-    planosGratis.textContent =
-        restantes + " de 3";
-
-    creditosPagos.textContent =
-        creditos;
-
-    if (mensagemConta) {
-
-        if (restantes > 0) {
-
-            mensagemConta.textContent =
-                "Ainda possui " +
-                restantes +
-                " plano(s) gratuito(s).";
-
-        } else {
-
-            mensagemConta.textContent =
-                "Os 3 planos gratuitos já foram utilizados.";
-        }
-    }
-}
-
-
-// ================================
-// CRIAR CONTA
-// ================================
-
-if (btnCriarConta) {
-
-    btnCriarConta.addEventListener(
-        "click",
-        async () => {
-
-            const email =
-                document
-                    .getElementById("email")
-                    .value
-                    .trim();
-
-            const password =
-                document
-                    .getElementById("password")
-                    .value;
-
-            const mensagem =
-                document.getElementById(
-                    "mensagemAcesso"
-                );
-
-            if (!email || !password) {
-
-                mensagem.textContent =
-                    "Preencha o email e a palavra-passe.";
-
-                return;
-            }
-
-            if (password.length < 6) {
-
-                mensagem.textContent =
-                    "A palavra-passe deve ter pelo menos 6 caracteres.";
-
-                return;
-            }
-
-            mensagem.textContent =
-                "A criar a sua conta...";
-
-            const {
-                data,
-                error
-            } =
-                await supabaseClient.auth.signUp({
-
-                    email: email,
-
-                    password: password
-
-                });
-
-            if (error) {
-
-                console.error(error);
-
-                mensagem.textContent =
-                    "Não foi possível criar a conta: " +
-                    error.message;
-
-                return;
-            }
-
-            console.log(
-                "Conta criada:",
-                data
-            );
-
-            mensagem.textContent =
-                "Conta criada com sucesso. Verifique o seu email se for solicitado.";
-        }
-    );
-}
-
-
-// ================================
-// ENTRAR
-// ================================
-
-if (btnEntrar) {
-
-    btnEntrar.addEventListener(
-        "click",
-        async () => {
-
-            const email =
-                document
-                    .getElementById("email")
-                    .value
-                    .trim();
-
-            const password =
-                document
-                    .getElementById("password")
-                    .value;
-
-            const mensagem =
-                document.getElementById(
-                    "mensagemAcesso"
-                );
-
-            if (!email || !password) {
-
-                mensagem.textContent =
-                    "Preencha o email e a palavra-passe.";
-
-                return;
-            }
-
-            mensagem.textContent =
-                "A entrar...";
-
-            const {
-                data,
-                error
-            } =
-                await supabaseClient
-                    .auth.signInWithPassword({
-
-                        email: email,
-
-                        password: password
-
-                    });
-
-            if (error) {
-
-                console.error(error);
-
-                mensagem.textContent =
-                    "Email ou palavra-passe incorretos.";
-
-                return;
-            }
-
-            console.log(
-                "Utilizador autenticado:",
-                data.user
-            );
-
-            mensagem.textContent =
-                "Entrada realizada com sucesso!";
-
-            const acesso =
-                document.getElementById(
-                    "acesso"
-                );
-
-            if (acesso) {
-
-                acesso.style.display =
-                    "none";
-            }
-
-            await mostrarUtilizador();
-
-            await carregarPerfil();
-
-            await carregarConta();
-        }
-    );
-}
-
-
-// ================================
-// MENU
-// ================================
-
-const btnMenu =
-    document.getElementById("btnMenu");
-
-const menu =
-    document.getElementById("menu");
-
-if (btnMenu && menu) {
-
-    btnMenu.addEventListener(
-        "click",
-        () => {
-
-            menu.classList.toggle(
-                "aberto"
-            );
-        }
-    );
-}
-
-
-// ================================
-// PERFIL
-// ================================
+// ======================================================
+// CARREGAR PERFIL
+// ======================================================
 
 async function carregarPerfil() {
 
     const {
         data: { user },
         error: erroSessao
-    } =
-        await supabaseClient.auth.getUser();
+    } = await supabaseClient.auth.getUser();
+
 
     if (erroSessao || !user) {
-
-        console.log(
-            "Nenhum utilizador autenticado."
-        );
-
         return;
     }
+
 
     const {
         data: perfil,
@@ -485,11 +140,9 @@ async function carregarPerfil() {
             .select(
                 "nome, escola, turma, numero_alunos"
             )
-            .eq(
-                "id",
-                user.id
-            )
+            .eq("id", user.id)
             .maybeSingle();
+
 
     if (error) {
 
@@ -501,53 +154,53 @@ async function carregarPerfil() {
         return;
     }
 
-    if (!perfil) return;
+
+    if (!perfil) {
+        return;
+    }
+
 
     const nomeProfessor =
-        document.getElementById(
-            "nomeProfessor"
-        );
+        document.getElementById("nomeProfessor");
 
     const escola =
-        document.getElementById(
-            "escola"
-        );
+        document.getElementById("escola");
 
     const turma =
-        document.getElementById(
-            "turma"
-        );
+        document.getElementById("turma");
 
     const numeroAlunos =
-        document.getElementById(
-            "numeroAlunos"
-        );
+        document.getElementById("numeroAlunos");
+
 
     if (nomeProfessor) {
-
         nomeProfessor.value =
             perfil.nome || "";
     }
 
-    if (escola) {
 
+    if (escola) {
         escola.value =
             perfil.escola || "";
     }
 
-    if (turma) {
 
+    if (turma) {
         turma.value =
             perfil.turma || "";
     }
 
-    if (numeroAlunos) {
 
+    if (numeroAlunos) {
         numeroAlunos.value =
             perfil.numero_alunos || "";
     }
 }
 
+
+// ======================================================
+// GUARDAR PERFIL E IR PARA O GERADOR
+// ======================================================
 
 if (guardarPerfil) {
 
@@ -560,55 +213,76 @@ if (guardarPerfil) {
                     "mensagemPerfil"
                 );
 
+
             const {
                 data: { user },
                 error: erroSessao
             } =
-                await supabaseClient
-                    .auth.getUser();
+                await supabaseClient.auth.getUser();
+
 
             if (erroSessao || !user) {
 
-                mensagem.textContent =
-                    "Entre na sua conta antes de guardar o perfil.";
+                if (mensagem) {
+                    mensagem.textContent =
+                        "A sessão terminou. Entre novamente.";
+                }
+
+                mostrarPagina("login");
 
                 return;
             }
 
+
             const nome =
                 document
-                    .getElementById(
-                        "nomeProfessor"
-                    )
+                    .getElementById("nomeProfessor")
                     .value
                     .trim();
+
 
             const escola =
                 document
-                    .getElementById(
-                        "escola"
-                    )
+                    .getElementById("escola")
                     .value
                     .trim();
+
 
             const turma =
                 document
-                    .getElementById(
-                        "turma"
-                    )
+                    .getElementById("turma")
                     .value
                     .trim();
+
 
             const numeroAlunos =
                 document
-                    .getElementById(
-                        "numeroAlunos"
-                    )
+                    .getElementById("numeroAlunos")
                     .value
                     .trim();
 
-            mensagem.textContent =
-                "A guardar o perfil...";
+
+            if (
+                !nome ||
+                !escola ||
+                !turma ||
+                !numeroAlunos
+            ) {
+
+                if (mensagem) {
+                    mensagem.textContent =
+                        "Preencha todos os campos do perfil.";
+                }
+
+                return;
+            }
+
+
+            if (mensagem) {
+                mensagem.textContent =
+                    "A guardar o perfil...";
+            }
+
 
             const {
                 error
@@ -624,17 +298,16 @@ if (guardarPerfil) {
                         turma: turma,
 
                         numero_alunos:
-                            numeroAlunos
-                                ? parseInt(
-                                    numeroAlunos
-                                )
-                                : 0
+                            parseInt(
+                                numeroAlunos
+                            )
 
                     })
                     .eq(
                         "id",
                         user.id
                     );
+
 
             if (error) {
 
@@ -643,24 +316,232 @@ if (guardarPerfil) {
                     error
                 );
 
-                mensagem.textContent =
-                    "Não foi possível guardar o perfil.";
+                if (mensagem) {
+                    mensagem.textContent =
+                        "Não foi possível guardar o perfil.";
+                }
 
                 return;
             }
 
-            mensagem.textContent =
-                "Perfil guardado com sucesso.";
 
-            await mostrarUtilizador();
+            if (mensagem) {
+                mensagem.textContent = "";
+            }
+
+
+            mostrarPagina("gerador");
         }
     );
 }
 
 
-// ================================
+// ======================================================
+// ENTRAR
+// ======================================================
+
+if (btnEntrar) {
+
+    btnEntrar.addEventListener(
+        "click",
+        async () => {
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            if (!email || !password) {
+
+                mostrarMensagemAcesso(
+                    "Preencha o email e a palavra-passe."
+                );
+
+                return;
+            }
+
+
+            mostrarMensagemAcesso(
+                "A entrar..."
+            );
+
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .auth.signInWithPassword({
+
+                        email: email,
+
+                        password: password
+
+                    });
+
+
+            if (error) {
+
+                console.error(
+                    "Erro no login:",
+                    error
+                );
+
+                mostrarMensagemAcesso(
+                    "Email ou palavra-passe incorretos."
+                );
+
+                return;
+            }
+
+
+            if (!data.session) {
+
+                mostrarMensagemAcesso(
+                    "Não foi possível iniciar a sessão."
+                );
+
+                return;
+            }
+
+
+            mostrarMensagemAcesso(
+                "Entrada realizada com sucesso!"
+            );
+
+
+            await carregarPerfil();
+
+
+            setTimeout(() => {
+
+                mostrarPagina("perfil");
+
+            }, 300);
+
+        }
+    );
+}
+
+
+// ======================================================
+// CRIAR CONTA
+// ======================================================
+
+if (btnCriarConta) {
+
+    btnCriarConta.addEventListener(
+        "click",
+        async () => {
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            if (!email || !password) {
+
+                mostrarMensagemAcesso(
+                    "Preencha o email e a palavra-passe."
+                );
+
+                return;
+            }
+
+
+            if (password.length < 6) {
+
+                mostrarMensagemAcesso(
+                    "A palavra-passe deve ter pelo menos 6 caracteres."
+                );
+
+                return;
+            }
+
+
+            mostrarMensagemAcesso(
+                "A criar a sua conta..."
+            );
+
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient.auth.signUp({
+
+                    email: email,
+
+                    password: password
+
+                });
+
+
+            if (error) {
+
+                console.error(
+                    "Erro ao criar conta:",
+                    error
+                );
+
+                mostrarMensagemAcesso(
+                    "Não foi possível criar a conta: " +
+                    error.message
+                );
+
+                return;
+            }
+
+
+            if (data.session) {
+
+                mostrarMensagemAcesso(
+                    "Conta criada com sucesso!"
+                );
+
+
+                await carregarPerfil();
+
+
+                setTimeout(() => {
+
+                    mostrarPagina("perfil");
+
+                }, 300);
+
+
+                return;
+            }
+
+
+            mostrarMensagemAcesso(
+                "Conta criada. Verifique o seu email para confirmar a conta e depois entre."
+            );
+
+        }
+    );
+}
+
+
+// ======================================================
 // GERAR PLANO
-// ================================
+// ======================================================
 
 if (gerarPlano) {
 
@@ -670,57 +551,109 @@ if (gerarPlano) {
 
             const disciplina =
                 document
-                    .getElementById(
-                        "disciplina"
-                    )
-                    .value;
-
-            const classe =
-                document
-                    .getElementById(
-                        "classe"
-                    )
-                    .value;
-
-            const tema =
-                document
-                    .getElementById(
-                        "tema"
-                    )
+                    .getElementById("disciplina")
                     .value
                     .trim();
 
+
+            const unidadeTematica =
+                document
+                    .getElementById("unidadeTematica")
+                    .value
+                    .trim();
+
+
+            const classe =
+                document
+                    .getElementById("classe")
+                    .value;
+
+
+            const tema =
+                document
+                    .getElementById("tema")
+                    .value
+                    .trim();
+
+
             const duracao =
                 document
-                    .getElementById(
-                        "duracao"
-                    )
-                    .value;
+                    .getElementById("duracao")
+                    .value
+                    .trim();
+
 
             const tipoAula =
                 document
-                    .getElementById(
-                        "tipoAula"
-                    )
+                    .getElementById("tipoAula")
                     .value;
+
 
             const mensagem =
                 document.getElementById(
                     "mensagemGeracao"
                 );
 
+
             const conteudo =
                 document.getElementById(
                     "conteudoPlano"
                 );
 
-            if (!tema) {
+
+            if (!disciplina) {
 
                 mensagem.textContent =
-                    "Digite o tema da aula.";
+                    "Escreva a disciplina.";
 
                 return;
             }
+
+
+            if (!unidadeTematica) {
+
+                mensagem.textContent =
+                    "Escreva a unidade temática.";
+
+                return;
+            }
+
+
+            if (!tema) {
+
+                mensagem.textContent =
+                    "Escreva o tema da aula.";
+
+                return;
+            }
+
+
+            if (!tipoAula) {
+
+                mensagem.textContent =
+                    "Selecione o tipo de aula.";
+
+                return;
+            }
+
+
+            if (!duracao) {
+
+                mensagem.textContent =
+                    "Informe a duração.";
+
+                return;
+            }
+
+
+            if (!classe) {
+
+                mensagem.textContent =
+                    "Selecione a classe.";
+
+                return;
+            }
+
 
             const {
                 data: { session },
@@ -728,6 +661,7 @@ if (gerarPlano) {
             } =
                 await supabaseClient
                     .auth.getSession();
+
 
             if (
                 erroSessao ||
@@ -737,14 +671,19 @@ if (gerarPlano) {
                 mensagem.textContent =
                     "Entre na sua conta antes de gerar um plano.";
 
+                mostrarPagina("login");
+
                 return;
             }
+
 
             mensagem.textContent =
                 "O MozSaber está a preparar o seu plano...";
 
+
             conteudo.textContent =
                 "Aguarde enquanto o plano está a ser preparado.";
+
 
             const {
                 data: perfil,
@@ -761,6 +700,7 @@ if (gerarPlano) {
                     )
                     .maybeSingle();
 
+
             if (erroPerfil) {
 
                 console.error(
@@ -769,13 +709,11 @@ if (gerarPlano) {
                 );
 
                 mensagem.textContent =
-                    "Não foi possível obter o perfil do utilizador.";
-
-                conteudo.textContent =
-                    "";
+                    "Não foi possível obter o perfil.";
 
                 return;
             }
+
 
             const perfilPlano = {
 
@@ -792,6 +730,7 @@ if (gerarPlano) {
                     perfil?.numero_alunos || ""
 
             };
+
 
             try {
 
@@ -818,6 +757,8 @@ if (gerarPlano) {
 
                                     disciplina,
 
+                                    unidadeTematica,
+
                                     classe,
 
                                     tema,
@@ -834,7 +775,9 @@ if (gerarPlano) {
                         }
                     );
 
+
                 let dados;
+
 
                 try {
 
@@ -851,6 +794,7 @@ if (gerarPlano) {
                     };
                 }
 
+
                 if (!resposta.ok) {
 
                     throw new Error(
@@ -859,29 +803,20 @@ if (gerarPlano) {
                     );
                 }
 
+
                 conteudo.textContent =
                     dados.plano ||
                     "Plano não recebido.";
 
+
                 mensagem.textContent =
                     "Plano gerado com sucesso.";
 
+
+                mostrarPagina("resultado");
+
+
                 await carregarConta();
-
-                const resultado =
-                    document.getElementById(
-                        "resultado"
-                    );
-
-                if (resultado) {
-
-                    resultado.scrollIntoView({
-
-                        behavior:
-                            "smooth"
-
-                    });
-                }
 
             } catch (erro) {
 
@@ -890,220 +825,906 @@ if (gerarPlano) {
                     erro
                 );
 
+
                 mensagem.textContent =
                     erro.message ||
                     "Não foi possível gerar o plano.";
 
+
                 conteudo.textContent =
                     "Ocorreu um erro ao comunicar com o servidor MozSaber.";
-
-                await carregarConta();
             }
         }
     );
 }
 
 
-// ================================
-// BOTÕES DE COMPRA
-// ================================
+// ======================================================
+// CARREGAR CONTA
+// ======================================================
 
-const btnComprar1 =
-    document.getElementById(
-        "btnComprar1"
-    );
+async function carregarConta() {
 
-const btnComprar3 =
-    document.getElementById(
-        "btnComprar3"
-    );
-
-
-async function criarPedidoPagamento(
-    pacote
-) {
-
-    const mensagemCompra =
+    const planosGratis =
         document.getElementById(
-            "mensagemCompra"
+            "planosGratis"
         );
 
-    try {
 
-        const {
-            data: { session },
-            error: erroSessao
-        } =
-            await supabaseClient
-                .auth.getSession();
+    const creditosPagos =
+        document.getElementById(
+            "creditosPagos"
+        );
 
-        if (
-            erroSessao ||
-            !session
-        ) {
 
-            prepararCompra(
-                "Entre na sua conta para comprar créditos."
+    if (
+        !planosGratis ||
+        !creditosPagos
+    ) {
+        return;
+    }
+
+
+    const {
+        data: { user },
+        error: erroSessao
+    } =
+        await supabaseClient.auth.getUser();
+
+
+    if (erroSessao || !user) {
+
+        planosGratis.textContent =
+            "--";
+
+        creditosPagos.textContent =
+            "--";
+
+        return;
+    }
+
+
+    const {
+        data: perfil,
+        error
+    } =
+        await supabaseClient
+            .from("profiles")
+            .select(
+                "planos_gratis_usados, creditos"
+            )
+            .eq(
+                "id",
+                user.id
+            )
+            .maybeSingle();
+
+
+    if (error || !perfil) {
+
+        planosGratis.textContent =
+            "--";
+
+        creditosPagos.textContent =
+            "--";
+
+        return;
+    }
+
+
+    const usados =
+        Number(
+            perfil.planos_gratis_usados || 0
+        );
+
+
+    const creditos =
+        Number(
+            perfil.creditos || 0
+        );
+
+
+    const restantes =
+        Math.max(
+            0,
+            3 - usados
+        );
+
+
+    planosGratis.textContent =
+        restantes + " de 3";
+
+
+    creditosPagos.textContent =
+        creditos;
+}
+
+
+// ======================================================
+// PAINÉIS DA BARRA INFERIOR
+// ======================================================
+
+function abrirPainel(nome) {
+
+    let painel = null;
+
+
+    if (nome === "biblioteca") {
+
+        painel =
+            document.getElementById(
+                "painelBiblioteca"
             );
+    }
 
-            return;
-        }
 
-        prepararCompra(
-            "A preparar o pedido de pagamento..."
+    if (nome === "conta") {
+
+        painel =
+            document.getElementById(
+                "painelConta"
+            );
+    }
+
+
+    if (nome === "autor") {
+
+        painel =
+            document.getElementById(
+                "painelAutor"
+            );
+    }
+
+
+    if (painel) {
+
+        painel.classList.add("ativo");
+
+    }
+
+
+    if (nome === "conta") {
+
+        carregarConta();
+
+    }
+}
+
+
+function fecharPainel(nome) {
+
+    let painel = null;
+
+
+    if (nome === "biblioteca") {
+
+        painel =
+            document.getElementById(
+                "painelBiblioteca"
+            );
+    }
+
+
+    if (nome === "conta") {
+
+        painel =
+            document.getElementById(
+                "painelConta"
+            );
+    }
+
+
+    if (nome === "autor") {
+
+        painel =
+            document.getElementById(
+                "painelAutor"
+            );
+    }
+
+
+    if (painel) {
+
+        painel.classList.remove("ativo");
+
+    }
+}
+
+
+// ======================================================
+// BIBLIOTECA
+// ======================================================
+
+function abrirBibliotecaOpcao(opcao) {
+
+    const painel =
+        document.getElementById(
+            "painelBiblioteca"
         );
 
 
-        const resposta =
-            await fetch(
-                "https://mozsaber-server.onrender.com/criar-pagamento",
-                {
+    if (!painel) {
+        return;
+    }
 
-                    method: "POST",
 
-                    headers: {
+    const conteudo =
+        painel.querySelector(
+            ".painel-conteudo"
+        );
 
-                        "Content-Type":
-                            "application/json",
 
-                        "Authorization":
-                            "Bearer " +
-                            session.access_token
+    if (!conteudo) {
+        return;
+    }
 
-                    },
 
-                    body:
-                        JSON.stringify({
+    // ==================================================
+    // MANUAIS
+    // ==================================================
 
-                            pacote:
-                                pacote
+    if (opcao === "manuais") {
 
-                        })
+        mostrarMenuClasses();
+
+        return;
+    }
+
+
+    let titulo = "";
+    let mensagem = "";
+
+
+    if (opcao === "recursos") {
+
+        titulo = "Recursos Didácticos";
+
+        mensagem =
+            "Aqui estarão disponíveis fichas, textos de apoio, materiais de aula e outros recursos didácticos.";
+
+    }
+
+
+    if (opcao === "outros") {
+
+        titulo = "Outros";
+
+        mensagem =
+            "Aqui serão disponibilizados outros materiais educativos e académicos.";
+
+    }
+
+
+    conteudo.innerHTML = `
+
+        <button
+            class="btn-fechar"
+            data-fechar="biblioteca"
+        >
+            ×
+        </button>
+
+        <h2>${titulo}</h2>
+
+        <div class="biblioteca-vazio">
+
+            <div class="biblioteca-icone">
+                📚
+            </div>
+
+            <p>
+                ${mensagem}
+            </p>
+
+            <p>
+                <strong>
+                    Conteúdo em preparação.
+                </strong>
+            </p>
+
+            <button
+                class="opcao-painel"
+                id="voltarBiblioteca"
+            >
+                Voltar à Biblioteca
+            </button>
+
+        </div>
+
+    `;
+
+
+    const btnVoltar =
+        document.getElementById(
+            "voltarBiblioteca"
+        );
+
+
+    if (btnVoltar) {
+
+        btnVoltar.addEventListener(
+            "click",
+            () => {
+
+                mostrarMenuBiblioteca();
+
+            }
+        );
+
+    }
+
+
+    const btnFechar =
+        conteudo.querySelector(
+            "[data-fechar='biblioteca']"
+        );
+
+
+    if (btnFechar) {
+
+        btnFechar.addEventListener(
+            "click",
+            () => {
+
+                fecharPainel("biblioteca");
+
+            }
+        );
+
+    }
+}
+
+
+// ======================================================
+// MENU DE CLASSES DOS MANUAIS
+// ======================================================
+
+function mostrarMenuClasses() {
+
+    const painel =
+        document.getElementById(
+            "painelBiblioteca"
+        );
+
+
+    if (!painel) {
+        return;
+    }
+
+
+    const conteudo =
+        painel.querySelector(
+            ".painel-conteudo"
+        );
+
+
+    if (!conteudo) {
+        return;
+    }
+
+
+    let botoesClasses = "";
+
+
+    for (let i = 1; i <= 12; i++) {
+
+        botoesClasses += `
+
+            <button
+                class="opcao-painel"
+                data-classe-manual="${i}"
+            >
+                ${i}ª Classe
+            </button>
+
+        `;
+
+    }
+
+
+    conteudo.innerHTML = `
+
+        <button
+            class="btn-fechar"
+            data-fechar="biblioteca"
+        >
+            ×
+        </button>
+
+        <h2>Manuais</h2>
+
+        <p>
+            Escolha a classe:
+        </p>
+
+        <div class="lista-classes">
+
+            ${botoesClasses}
+
+        </div>
+
+        <button
+            class="opcao-painel"
+            id="voltarBibliotecaPrincipal"
+        >
+            ← Voltar à Biblioteca
+        </button>
+
+    `;
+
+
+    const botoes =
+        conteudo.querySelectorAll(
+            "[data-classe-manual]"
+        );
+
+
+    botoes.forEach((botao) => {
+
+        botao.addEventListener(
+            "click",
+            () => {
+
+                const classe =
+                    botao.dataset.classeManual;
+
+                abrirClasseManual(classe);
+
+            }
+        );
+
+    });
+
+
+    const voltar =
+        document.getElementById(
+            "voltarBibliotecaPrincipal"
+        );
+
+
+    if (voltar) {
+
+        voltar.addEventListener(
+            "click",
+            () => {
+
+                mostrarMenuBiblioteca();
+
+            }
+        );
+
+    }
+
+
+    const btnFechar =
+        conteudo.querySelector(
+            "[data-fechar='biblioteca']"
+        );
+
+
+    if (btnFechar) {
+
+        btnFechar.addEventListener(
+            "click",
+            () => {
+
+                fecharPainel("biblioteca");
+
+            }
+        );
+
+    }
+}
+
+
+// ======================================================
+// ABRIR UMA CLASSE
+// ======================================================
+
+function abrirClasseManual(classe) {
+
+    const painel =
+        document.getElementById(
+            "painelBiblioteca"
+        );
+
+
+    if (!painel) {
+        return;
+    }
+
+
+    const conteudo =
+        painel.querySelector(
+            ".painel-conteudo"
+        );
+
+
+    if (!conteudo) {
+        return;
+    }
+
+
+    conteudo.innerHTML = `
+
+        <button
+            class="btn-fechar"
+            data-fechar="biblioteca"
+        >
+            ×
+        </button>
+
+        <h2>${classe}ª Classe</h2>
+
+        <div class="biblioteca-vazio">
+
+            <div class="biblioteca-icone">
+                📖
+            </div>
+
+            <p>
+                Manuais da ${classe}ª Classe
+            </p>
+
+            <p>
+                <strong>
+                    Escolha a disciplina.
+                </strong>
+            </p>
+
+            <p>
+                Os manuais desta classe serão
+                organizados aqui.
+            </p>
+
+            <button
+                class="opcao-painel"
+                id="voltarClasses"
+            >
+                ← Voltar às Classes
+            </button>
+
+        </div>
+
+    `;
+
+
+    const voltar =
+        document.getElementById(
+            "voltarClasses"
+        );
+
+
+    if (voltar) {
+
+        voltar.addEventListener(
+            "click",
+            () => {
+
+                mostrarMenuClasses();
+
+            }
+        );
+
+    }
+
+
+    const btnFechar =
+        conteudo.querySelector(
+            "[data-fechar='biblioteca']"
+        );
+
+
+    if (btnFechar) {
+
+        btnFechar.addEventListener(
+            "click",
+            () => {
+
+                fecharPainel("biblioteca");
+
+            }
+        );
+
+    }
+}
+
+
+// ======================================================
+// MENU PRINCIPAL DA BIBLIOTECA
+// ======================================================
+
+function mostrarMenuBiblioteca() {
+
+    const painel =
+        document.getElementById(
+            "painelBiblioteca"
+        );
+
+
+    if (!painel) {
+        return;
+    }
+
+
+    const conteudo =
+        painel.querySelector(
+            ".painel-conteudo"
+        );
+
+
+    if (!conteudo) {
+        return;
+    }
+
+
+    conteudo.innerHTML = `
+
+        <button
+            class="btn-fechar"
+            data-fechar="biblioteca"
+        >
+            ×
+        </button>
+
+        <h2>Biblioteca</h2>
+
+        <button
+            class="opcao-painel"
+            id="btnManuais"
+        >
+            📚 Manuais
+        </button>
+
+        <button
+            class="opcao-painel"
+            id="btnRecursos"
+        >
+            📝 Recursos Didácticos
+        </button>
+
+        <button
+            class="opcao-painel"
+            id="btnOutros"
+        >
+            📂 Outros
+        </button>
+
+    `;
+
+
+    const btnManuais =
+        document.getElementById(
+            "btnManuais"
+        );
+
+
+    const btnRecursos =
+        document.getElementById(
+            "btnRecursos"
+        );
+
+
+    const btnOutros =
+        document.getElementById(
+            "btnOutros"
+        );
+
+
+    if (btnManuais) {
+
+        btnManuais.addEventListener(
+            "click",
+            () => {
+
+                abrirBibliotecaOpcao(
+                    "manuais"
+                );
+
+            }
+        );
+
+    }
+
+
+    if (btnRecursos) {
+
+        btnRecursos.addEventListener(
+            "click",
+            () => {
+
+                abrirBibliotecaOpcao(
+                    "recursos"
+                );
+
+            }
+        );
+
+    }
+
+
+    if (btnOutros) {
+
+        btnOutros.addEventListener(
+            "click",
+            () => {
+
+                abrirBibliotecaOpcao(
+                    "outros"
+                );
+
+            }
+        );
+
+    }
+
+
+    const btnFechar =
+        conteudo.querySelector(
+            "[data-fechar='biblioteca']"
+        );
+
+
+    if (btnFechar) {
+
+        btnFechar.addEventListener(
+            "click",
+            () => {
+
+                fecharPainel("biblioteca");
+
+            }
+        );
+
+    }
+}
+
+
+// ======================================================
+// ABRIR PAINÉIS
+// ======================================================
+
+document
+    .querySelectorAll("[data-abrir]")
+    .forEach((botao) => {
+
+        botao.addEventListener(
+            "click",
+            () => {
+
+                const nome =
+                    botao.dataset.abrir;
+
+
+                if (nome === "biblioteca") {
+
+                    mostrarMenuBiblioteca();
 
                 }
-            );
 
 
-        let dados;
+                abrirPainel(nome);
 
-        try {
-
-            dados =
-                await resposta.json();
-
-        } catch {
-
-            dados = {
-
-                mensagem:
-                    "Resposta inválida do servidor."
-
-            };
-        }
-
-
-        if (!resposta.ok) {
-
-            throw new Error(
-                dados.mensagem ||
-                "Não foi possível criar o pedido de pagamento."
-            );
-        }
-
-
-        const pagamento =
-            dados.pagamento;
-
-
-        if (!pagamento) {
-
-            throw new Error(
-                "O servidor não devolveu os dados do pagamento."
-            );
-        }
-
-
-        prepararCompra(
-            "Pedido criado com sucesso. Referência: " +
-            pagamento.referencia +
-            " | Valor: " +
-            pagamento.valor +
-            " MZN | Estado: " +
-            pagamento.estado
+            }
         );
 
+    });
 
-        console.log(
-            "Pagamento criado:",
-            pagamento
+
+// ======================================================
+// FECHAR PAINÉIS
+// ======================================================
+
+document
+    .querySelectorAll("[data-fechar]")
+    .forEach((botao) => {
+
+        botao.addEventListener(
+            "click",
+            () => {
+
+                fecharPainel(
+                    botao.dataset.fechar
+                );
+
+            }
         );
 
+    });
 
-    } catch (erro) {
 
-        console.error(
-            "Erro ao criar pagamento:",
-            erro
+// ======================================================
+// FECHAR AO CLICAR FORA
+// ======================================================
+
+document
+    .querySelectorAll(".painel")
+    .forEach((painel) => {
+
+        painel.addEventListener(
+            "click",
+            (evento) => {
+
+                if (
+                    evento.target === painel
+                ) {
+
+                    painel.classList.remove(
+                        "ativo"
+                    );
+
+                }
+
+            }
         );
 
-        if (mensagemCompra) {
-
-            mensagemCompra.textContent =
-                erro.message ||
-                "Não foi possível criar o pedido de pagamento.";
-        }
-    }
-}
+    });
 
 
-function prepararCompra(mensagem) {
+// ======================================================
+// SAIR DA CONTA
+// ======================================================
 
-    const mensagemCompra =
-        document.getElementById(
-            "mensagemCompra"
-        );
-
-    if (mensagemCompra) {
-
-        mensagemCompra.textContent =
-            mensagem;
-    }
-}
+const btnSair =
+    document.getElementById("btnSair");
 
 
-if (btnComprar1) {
+if (btnSair) {
 
-    btnComprar1.addEventListener(
+    btnSair.addEventListener(
         "click",
         async () => {
 
-            await criarPedidoPagamento(
-                "1_plano"
-            );
+            const {
+                error
+            } =
+                await supabaseClient
+                    .auth.signOut();
+
+
+            if (error) {
+
+                console.error(
+                    "Erro ao sair:",
+                    error
+                );
+
+                return;
+            }
+
+
+            fecharPainel("conta");
+
+            mostrarPagina("login");
+
+
+            const email =
+                document.getElementById("email");
+
+            const password =
+                document.getElementById("password");
+
+
+            if (email) {
+                email.value = "";
+            }
+
+
+            if (password) {
+                password.value = "";
+            }
+
+
+            mostrarMensagemAcesso("");
 
         }
     );
 }
 
 
-if (btnComprar3) {
-
-    btnComprar3.addEventListener(
-        "click",
-        async () => {
-
-            await criarPedidoPagamento(
-                "3_planos"
-            );
-
-        }
-    );
-}
-
-
-// ================================
-// VERIFICAR SESSÃO
-// ================================
+// ======================================================
+// VERIFICAR SESSÃO AO ABRIR
+// ======================================================
 
 async function verificarSessao() {
 
@@ -1114,6 +1735,7 @@ async function verificarSessao() {
         await supabaseClient
             .auth.getSession();
 
+
     if (error) {
 
         console.error(
@@ -1121,74 +1743,30 @@ async function verificarSessao() {
             error
         );
 
+        mostrarPagina("login");
+
         return;
     }
 
-    const acesso =
-        document.getElementById(
-            "acesso"
-        );
-
-    const area =
-        document.getElementById(
-            "utilizadorLogado"
-        );
 
     if (session) {
-
-        if (acesso) {
-
-            acesso.style.display =
-                "none";
-        }
-
-        await mostrarUtilizador();
 
         await carregarPerfil();
 
         await carregarConta();
 
+        mostrarPagina("perfil");
+
     } else {
 
-        if (acesso) {
+        mostrarPagina("login");
 
-            acesso.style.display =
-                "";
-        }
-
-        if (area) {
-
-            area.innerHTML =
-                "";
-        }
-
-        const planosGratis =
-            document.getElementById(
-                "planosGratis"
-            );
-
-        const creditosPagos =
-            document.getElementById(
-                "creditosPagos"
-            );
-
-        if (planosGratis) {
-
-            planosGratis.textContent =
-                "--";
-        }
-
-        if (creditosPagos) {
-
-            creditosPagos.textContent =
-                "--";
-        }
     }
 }
 
 
-// ================================
-// INICIAR MOZSABER
-// ================================
+// ======================================================
+// INICIAR
+// ======================================================
 
 verificarSessao();

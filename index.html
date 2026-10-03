@@ -2,663 +2,602 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>MozSaber</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- =====================================================
-     CABEÇALHO
-====================================================== -->
+    <!-- =========================
+         PÁGINA 1 — LOGIN
+    ========================== -->
+    <section id="paginaLogin" class="pagina pagina-login">
 
-<header class="cabecalho">
+        <div class="logo-area">
+            <h1>MOZSABER</h1>
+            <p>Educação em Moçambique</p>
+        </div>
 
-    <div class="logo">
-        MOZSABER
+        <div class="card-login">
+
+            <h2>Entrar</h2>
+
+            <p class="descricao">
+                Entre na sua conta para continuar.
+            </p>
+
+            <label for="email">Email</label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Digite o seu email"
+            >
+
+            <label for="password">Palavra-passe</label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Digite a sua palavra-passe"
+            >
+
+            <button id="btnEntrar" class="btn-principal">
+                Entrar
+            </button>
+
+            <div id="mensagemAcesso" class="mensagem"></div>
+
+            <div class="separador">
+                <span>ou</span>
+            </div>
+
+            <button id="btnCriarConta" class="btn-secundario">
+                Criar conta
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PÁGINA 2 — PERFIL
+    ========================== -->
+    <section id="paginaPerfil" class="pagina pagina-interna">
+
+        <header class="cabecalho">
+
+            <div>
+                <h1>Meu Perfil</h1>
+                <p>Preencha os seus dados</p>
+            </div>
+
+        </header>
+
+        <main class="conteudo-pagina">
+
+            <div class="card">
+
+                <label for="nomeProfessor">
+                    Nome do professor/a
+                </label>
+
+                <input
+                    type="text"
+                    id="nomeProfessor"
+                    placeholder="Digite o seu nome"
+                >
+
+
+                <label for="escola">
+                    Escola
+                </label>
+
+                <input
+                    type="text"
+                    id="escola"
+                    placeholder="Digite o nome da escola"
+                >
+
+
+                <label for="turma">
+                    Turma
+                </label>
+
+                <input
+                    type="text"
+                    id="turma"
+                    placeholder="Ex.: A"
+                >
+
+
+                <label for="numeroAlunos">
+                    N.º de alunos
+                </label>
+
+                <input
+                    type="number"
+                    id="numeroAlunos"
+                    placeholder="Número de alunos"
+                    min="0"
+                >
+
+
+                <div id="mensagemPerfil" class="mensagem"></div>
+
+                <button
+                    id="guardarPerfil"
+                    class="btn-principal btn-proximo"
+                >
+                    Próximo
+                </button>
+
+            </div>
+
+        </main>
+
+
+        <!-- BARRA INFERIOR -->
+        <nav class="barra-inferior">
+
+            <button
+                class="item-nav"
+                data-abrir="biblioteca"
+            >
+                <span>Biblioteca</span>
+            </button>
+
+            <button
+                class="item-nav"
+                data-abrir="conta"
+            >
+                <span>Minha conta</span>
+            </button>
+
+            <button
+                class="item-nav"
+                data-abrir="autor"
+            >
+                <span>Autor</span>
+            </button>
+
+        </nav>
+
+    </section>
+
+
+    <!-- =========================
+         PÁGINA 3 — GERADOR
+    ========================== -->
+    <section id="paginaGerador" class="pagina pagina-interna">
+
+        <header class="cabecalho">
+
+            <div>
+                <h1>Criar Plano</h1>
+                <p>Preencha os dados da aula</p>
+            </div>
+
+        </header>
+
+
+        <main class="conteudo-pagina">
+
+            <div class="card">
+
+                <label for="disciplina">
+                    Disciplina
+                </label>
+
+                <input
+                    type="text"
+                    id="disciplina"
+                    placeholder="Escreva a disciplina"
+                >
+
+
+                <label for="unidadeTematica">
+                    Unidade temática
+                </label>
+
+                <input
+                    type="text"
+                    id="unidadeTematica"
+                    placeholder="Escreva a unidade temática"
+                >
+
+
+                <label for="tema">
+                    Tema
+                </label>
+
+                <input
+                    type="text"
+                    id="tema"
+                    placeholder="Escreva o tema da aula"
+                >
+
+
+                <label for="tipoAula">
+                    Tipo de aula
+                </label>
+
+                <select id="tipoAula">
+
+                    <option value="">
+                        Selecione o tipo de aula
+                    </option>
+
+                    <option value="Aula nova">
+                        Aula nova
+                    </option>
+
+                    <option value="Aula de consolidação">
+                        Aula de consolidação
+                    </option>
+
+                    <option value="Aula de avaliação">
+                        Aula de avaliação
+                    </option>
+
+                    <option value="Aula de revisão">
+                        Aula de revisão
+                    </option>
+
+                </select>
+
+
+                <label for="duracao">
+                    Duração
+                </label>
+
+                <input
+                    type="text"
+                    id="duracao"
+                    placeholder="Ex.: 45 minutos"
+                >
+
+
+                <label for="classe">
+                    Classe
+                </label>
+
+                <select id="classe">
+
+                    <option value="">
+                        Selecione a classe
+                    </option>
+
+                    <option value="1ª Classe">1ª Classe</option>
+                    <option value="2ª Classe">2ª Classe</option>
+                    <option value="3ª Classe">3ª Classe</option>
+                    <option value="4ª Classe">4ª Classe</option>
+                    <option value="5ª Classe">5ª Classe</option>
+                    <option value="6ª Classe">6ª Classe</option>
+                    <option value="7ª Classe">7ª Classe</option>
+                    <option value="8ª Classe">8ª Classe</option>
+                    <option value="9ª Classe">9ª Classe</option>
+                    <option value="10ª Classe">10ª Classe</option>
+                    <option value="11ª Classe">11ª Classe</option>
+                    <option value="12ª Classe">12ª Classe</option>
+
+                </select>
+
+
+                <div id="mensagemGeracao" class="mensagem"></div>
+
+
+                <button
+                    id="gerarPlano"
+                    class="btn-principal btn-proximo"
+                >
+                    Gerar Plano
+                </button>
+
+            </div>
+
+        </main>
+
+
+        <!-- BARRA INFERIOR -->
+        <nav class="barra-inferior">
+
+            <button
+                class="item-nav"
+                data-abrir="biblioteca"
+            >
+                <span>Biblioteca</span>
+            </button>
+
+            <button
+                class="item-nav"
+                data-abrir="conta"
+            >
+                <span>Minha conta</span>
+            </button>
+
+            <button
+                class="item-nav"
+                data-abrir="autor"
+            >
+                <span>Autor</span>
+            </button>
+
+        </nav>
+
+    </section>
+
+
+    <!-- =========================
+         JANELA — BIBLIOTECA
+    ========================== -->
+    <div id="painelBiblioteca" class="painel">
+
+        <div class="painel-conteudo">
+
+            <button class="btn-fechar" data-fechar="biblioteca">
+                ×
+            </button>
+
+            <h2>Biblioteca</h2>
+
+            <button class="opcao-painel">
+                Manuais
+            </button>
+
+            <button class="opcao-painel">
+                Recursos Didácticos
+            </button>
+
+            <button class="opcao-painel">
+                Outros
+            </button>
+
+        </div>
+
     </div>
 
-    <button
-        id="btnMenu"
-        class="btn-menu"
-        type="button"
-    >
-        Menu
-    </button>
 
-</header>
+    <!-- =========================
+         JANELA — MINHA CONTA
+    ========================== -->
+    <div id="painelConta" class="painel">
 
+        <div class="painel-conteudo">
 
-<!-- =====================================================
-     MENU
-====================================================== -->
+            <button class="btn-fechar" data-fechar="conta">
+                ×
+            </button>
 
-<nav
-    id="menu"
-    class="menu"
->
+            <h2>Minha Conta</h2>
 
-    <a href="#inicio">
-        Início
-    </a>
+            <div class="info-conta">
 
-    <a href="#planos">
-        Criar Plano
-    </a>
+                <p>
+                    Planos grátis:
+                    <strong id="planosGratis">0</strong>
+                </p>
 
-    <a href="#perfil">
-        Meu Perfil
-    </a>
-
-    <a href="#conta">
-        Minha Conta
-    </a>
-
-    <a href="#resultado">
-        Meus Planos
-    </a>
-
-</nav>
-
-
-<main>
-
-    <!-- =================================================
-         UTILIZADOR LOGADO
-    ================================================== -->
-
-    <div
-        id="utilizadorLogado"
-        class="utilizador-logado"
-    ></div>
-
-
-    <!-- =================================================
-         LOGIN
-    ================================================== -->
-
-    <section
-        id="acesso"
-        class="secao acesso"
-    >
-
-        <h2>
-            Entrar no MozSaber
-        </h2>
-
-
-        <label for="email">
-            Email
-        </label>
-
-        <input
-            type="email"
-            id="email"
-            placeholder="Digite o seu email"
-        >
-
-
-        <label for="password">
-            Palavra-passe
-        </label>
-
-        <input
-            type="password"
-            id="password"
-            placeholder="Digite a sua palavra-passe"
-        >
-
-
-        <button
-            id="btnEntrar"
-            type="button"
-        >
-            Entrar
-        </button>
-
-
-        <button
-            id="btnCriarConta"
-            type="button"
-        >
-            Criar conta
-        </button>
-
-
-        <p id="mensagemAcesso"></p>
-
-    </section>
-
-
-    <!-- =================================================
-         INÍCIO / BANNER
-    ================================================== -->
-
-    <section
-        id="inicio"
-        class="hero"
-    >
-
-        <h1>
-            Bem-vindo ao MozSaber
-        </h1>
-
-        <p>
-            A sua plataforma educativa para professores
-            e formandos.
-        </p>
-
-        <p>
-            Crie planos de aula com apoio da
-            inteligência artificial.
-        </p>
-
-        <button
-            type="button"
-            onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'})"
-        >
-            ✦ Criar Plano de Aula
-        </button>
-
-    </section>
-
-
-    <!-- =================================================
-         ATALHOS
-    ================================================== -->
-
-    <section class="cards">
-
-        <div
-            class="card"
-            onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'})"
-        >
-
-            <h2>
-                📚
-            </h2>
-
-            <h2>
-                Planos
-            </h2>
-
-            <p>
-                Crie planos de aula.
-            </p>
-
-        </div>
-
-
-        <div
-            class="card"
-            onclick="document.getElementById('perfil').scrollIntoView({behavior:'smooth'})"
-        >
-
-            <h2>
-                👤
-            </h2>
-
-            <h2>
-                Perfil
-            </h2>
-
-            <p>
-                Os seus dados.
-            </p>
-
-        </div>
-
-
-        <div
-            class="card"
-            onclick="document.getElementById('resultado').scrollIntoView({behavior:'smooth'})"
-        >
-
-            <h2>
-                📄
-            </h2>
-
-            <h2>
-                Meus Planos
-            </h2>
-
-            <p>
-                Consulte os seus planos.
-            </p>
-
-        </div>
-
-
-        <div
-            class="card"
-            onclick="document.getElementById('conta').scrollIntoView({behavior:'smooth'})"
-        >
-
-            <h2>
-                💳
-            </h2>
-
-            <h2>
-                Conta
-            </h2>
-
-            <p>
-                Créditos e compras.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         MINHA CONTA
-    ================================================== -->
-
-    <section
-        id="conta"
-        class="secao conta"
-    >
-
-        <h2>
-            💳 Minha Conta
-        </h2>
-
-
-        <div class="conta-info">
-
-            <div class="credito-item">
-
-                <strong>
-                    Planos gratuitos
-                </strong>
-
-                <span id="planosGratis">
-                    --
-                </span>
+                <p>
+                    Créditos:
+                    <strong id="creditosPagos">0</strong>
+                </p>
 
             </div>
-
-
-            <div class="credito-item">
-
-                <strong>
-                    Créditos pagos
-                </strong>
-
-                <span id="creditosPagos">
-                    --
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <p id="mensagemConta"></p>
-
-
-        <div class="comprar-creditos">
-
-            <h3>
-                Comprar planos
-            </h3>
-
-            <p>
-                Depois dos planos gratuitos,
-                poderá adquirir novos créditos.
-            </p>
-
 
             <button
                 id="btnComprar1"
-                type="button"
+                class="opcao-painel"
             >
-                1 plano — 5 MZN
+                Comprar 1 plano — 5 MZN
             </button>
-
 
             <button
                 id="btnComprar3"
-                type="button"
+                class="opcao-painel"
             >
-                3 planos — 10 MZN
+                Comprar 3 planos — 10 MZN
             </button>
 
+            <div id="mensagemConta" class="mensagem"></div>
 
-            <p id="mensagemCompra"></p>
+            <button
+                id="btnSair"
+                class="btn-sair"
+            >
+                Sair da conta
+            </button>
 
         </div>
 
-    </section>
+    </div>
 
 
-    <!-- =================================================
-         RECURSOS
-    ================================================== -->
+    <!-- =========================
+         JANELA — AUTOR
+    ========================== -->
+    <div id="painelAutor" class="painel">
 
-    <section class="secao">
+        <div class="painel-conteudo">
 
-        <h2>
-            📖 Biblioteca de Recursos
-        </h2>
+            <button class="btn-fechar" data-fechar="autor">
+                ×
+            </button>
+
+            <h2>Sobre o Autor</h2>
 
 
-        <div class="cards">
+            <!-- IDENTIFICAÇÃO -->
+            <div class="autor-info">
 
-            <div class="card">
+                <div class="autor-avatar">
+                    FAMM
+                </div>
 
-                <h2>
-                    📚
-                </h2>
+                <h3>
+                    Fidel Agostinho Mário Manuel
+                </h3>
 
-                <h2>
-                    Manuais
-                </h2>
-
-                <p>
-                    Materiais de apoio ao ensino.
+                <p class="autor-cargo">
+                    Criador do MozSaber
                 </p>
 
             </div>
 
 
-            <div class="card">
+            <!-- DADOS PESSOAIS -->
+            <div class="dados-autor">
 
-                <h2>
-                    📝
-                </h2>
+                <div class="dado-autor">
+                    <strong>Data de nascimento</strong>
+                    <span>
+                        15 de Agosto de 2003
+                    </span>
+                </div>
 
-                <h2>
-                    Fichas
-                </h2>
+
+                <div class="dado-autor">
+                    <strong>Naturalidade</strong>
+                    <span>
+                        Província da Zambézia,
+                        Distrito de Alto Molócuè,
+                        Moçambique
+                    </span>
+                </div>
+
+
+                <div class="dado-autor">
+                    <strong>Filiação</strong>
+                    <span>
+                        Filho de Agostinho Mário Manuel
+                        e de Angerta Constância Isaque.
+                    </span>
+                </div>
+
+
+                <div class="dado-autor">
+                    <strong>Formação</strong>
+                    <span>
+                        Formado no Instituto de Formação
+                        de Professores de Nicoadala
+                        (IFP-Nicoadala), no período de
+                        2023 a 2025.
+                    </span>
+                </div>
+
+            </div>
+
+
+            <!-- CONTACTOS -->
+            <div class="contactos-autor">
+
+                <h3>Contactos</h3>
+
+                <a
+                    href="https://wa.me/258835348994"
+                    target="_blank"
+                >
+                    WhatsApp: 83 534 8994
+                </a>
+
+                <a
+                    href="tel:+258877906354"
+                >
+                    Contacto: 87 790 6354
+                </a>
+
+            </div>
+
+
+            <!-- SOBRE O MOZSABER -->
+            <div class="sobre-mozsaber">
+
+                <h3>Sobre o MozSaber</h3>
 
                 <p>
-                    Fichas para apoiar as aulas.
+                    O MozSaber é um projecto dedicado à
+                    educação, criado com o objectivo de
+                    apoiar professores e formandos através
+                    de planos de aula, recursos didácticos
+                    e outros materiais educativos.
                 </p>
 
             </div>
 
 
-            <div class="card">
+            <!-- AJUDA -->
+            <button class="opcao-painel">
+                Ajuda
+            </button>
 
-                <h2>
-                    📋
-                </h2>
+        </div>
 
-                <h2>
-                    Recursos Didácticos
-                </h2>
+    </div>
 
-                <p>
-                    Materiais para professores.
-                </p>
 
+    <!-- =========================
+         RESULTADO DO PLANO
+    ========================== -->
+    <section id="paginaResultado" class="pagina pagina-interna">
+
+        <header class="cabecalho">
+
+            <div>
+                <h1>Plano de Aula</h1>
+                <p>Plano gerado pelo MozSaber</p>
             </div>
 
-        </div>
+        </header>
+
+        <main class="conteudo-pagina">
+
+            <div
+                id="conteudoPlano"
+                class="card resultado-plano"
+            >
+                <!-- O plano será colocado aqui pelo app.js -->
+            </div>
+
+        </main>
+
+
+        <nav class="barra-inferior">
+
+            <button
+                class="item-nav"
+                data-abrir="biblioteca"
+            >
+                <span>Biblioteca</span>
+            </button>
+
+            <button
+                class="item-nav"
+                data-abrir="conta"
+            >
+                <span>Minha conta</span>
+            </button>
+
+            <button
+                class="item-nav"
+                data-abrir="autor"
+            >
+                <span>Autor</span>
+            </button>
+
+        </nav>
 
     </section>
 
 
-    <!-- =================================================
-         PERFIL
-    ================================================== -->
-
-    <section
-        id="perfil"
-        class="secao"
-    >
-
-        <h2>
-            👤 Meu Perfil
-        </h2>
-
-
-        <label for="nomeProfessor">
-            Nome do professor/a
-        </label>
-
-        <input
-            type="text"
-            id="nomeProfessor"
-            placeholder="Digite o seu nome"
-        >
-
-
-        <label for="escola">
-            Escola
-        </label>
-
-        <input
-            type="text"
-            id="escola"
-            placeholder="Digite o nome da escola"
-        >
-
-
-        <label for="turma">
-            Turma
-        </label>
-
-        <input
-            type="text"
-            id="turma"
-            placeholder="Ex.: A"
-        >
-
-
-        <label for="numeroAlunos">
-            Número de alunos
-        </label>
-
-        <input
-            type="number"
-            id="numeroAlunos"
-            placeholder="Ex.: 50"
-        >
-
-
-        <button
-            id="guardarPerfil"
-            type="button"
-        >
-            Guardar Perfil
-        </button>
-
-
-        <p id="mensagemPerfil"></p>
-
-    </section>
-
-
-    <!-- =================================================
-         GERADOR DE PLANO
-    ================================================== -->
-
-    <section
-        id="planos"
-        class="secao"
-    >
-
-        <h2>
-            Gerador Inteligente
-        </h2>
-
-
-        <p>
-            Crie um plano de aula adaptado à
-            metodologia do MozSaber.
-        </p>
-
-
-        <label for="disciplina">
-            Disciplina
-        </label>
-
-        <select id="disciplina">
-
-            <option value="Matemática">
-                Matemática
-            </option>
-
-            <option value="Português">
-                Português
-            </option>
-
-            <option value="Ciências Naturais">
-                Ciências Naturais
-            </option>
-
-            <option value="Biologia">
-                Biologia
-            </option>
-
-            <option value="Ciências Sociais">
-                Ciências Sociais
-            </option>
-
-        </select>
-
-
-        <label for="classe">
-            Classe
-        </label>
-
-        <select id="classe">
-
-            <option>1ª Classe</option>
-            <option>2ª Classe</option>
-            <option>3ª Classe</option>
-            <option>4ª Classe</option>
-            <option>5ª Classe</option>
-            <option>6ª Classe</option>
-            <option>7ª Classe</option>
-            <option>8ª Classe</option>
-            <option>9ª Classe</option>
-            <option>10ª Classe</option>
-            <option>11ª Classe</option>
-            <option>12ª Classe</option>
-
-        </select>
-
-
-        <label for="tema">
-            Tema
-        </label>
-
-        <input
-            type="text"
-            id="tema"
-            placeholder="Digite o tema da aula"
-        >
-
-
-        <label for="duracao">
-            Duração
-        </label>
-
-        <select id="duracao">
-
-            <option>45 minutos</option>
-            <option>50 minutos</option>
-            <option>60 minutos</option>
-            <option>90 minutos</option>
-
-        </select>
-
-
-        <label for="tipoAula">
-            Tipo de aula
-        </label>
-
-        <select id="tipoAula">
-
-            <option>Introdução</option>
-            <option>Desenvolvimento</option>
-            <option>Consolidação</option>
-            <option>Avaliação</option>
-
-        </select>
-
-
-        <button
-            id="gerarPlano"
-            type="button"
-        >
-            ✦ Gerar Plano de Aula
-        </button>
-
-
-        <p id="mensagemGeracao"></p>
-
-    </section>
-
-
-    <!-- =================================================
-         RESULTADO
-    ================================================== -->
-
-    <section
-        id="resultado"
-        class="secao resultado"
-    >
-
-        <h2>
-            📄 Plano Gerado
-        </h2>
-
-
-        <div id="conteudoPlano">
-
-            O plano gerado aparecerá aqui.
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<!-- =====================================================
-     RODAPÉ
-====================================================== -->
-
-<footer>
-
-    <p>
-        © 2026 MozSaber
-    </p>
-
-    <p>
-        Plataforma educativa para professores e formandos.
-    </p>
-
-</footer>
-
-
-<!-- =====================================================
-     SUPABASE
-====================================================== -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-<!-- =====================================================
-     APP
-====================================================== -->
-
-<script src="app.js"></script>
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- NOSSO JAVASCRIPT -->
+    <script src="app.js"></script>
 
 </body>
 </html>
