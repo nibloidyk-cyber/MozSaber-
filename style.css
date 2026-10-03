@@ -1,0 +1,791 @@
+/* =========================================================
+   MOZSABER — NOVO LAYOUT
+   Modelo baseado no segundo design escolhido
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --verde: #159447;
+    --verde-escuro: #08733b;
+    --azul: #102d55;
+    --azul-escuro: #071f3d;
+    --verde-claro: #eaf8f0;
+    --branco: #ffffff;
+    --cinza: #f5f7f8;
+    --cinza-texto: #667085;
+    --borda: #e5e7eb;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--cinza);
+    color: var(--azul);
+    line-height: 1.5;
+    padding-bottom: 85px;
+}
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
+.cabecalho {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px 22px;
+
+    background: var(--branco);
+
+    border-bottom: 1px solid var(--borda);
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--azul);
+}
+
+.logo::first-letter {
+    color: var(--verde);
+}
+
+.btn-menu {
+    width: 45px;
+    height: 42px;
+
+    margin: 0;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 10px;
+
+    background: transparent;
+    color: var(--azul);
+
+    font-size: 0;
+
+    cursor: pointer;
+}
+
+.btn-menu::before {
+    content: "☰";
+
+    font-size: 29px;
+    font-weight: normal;
+}
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.menu {
+    display: none;
+
+    position: sticky;
+    top: 73px;
+
+    z-index: 999;
+
+    background: white;
+
+    padding: 15px 22px;
+
+    border-bottom: 1px solid var(--borda);
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.menu.aberto {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.menu a {
+    color: var(--azul);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 0;
+}
+
+/* =========================================================
+   CONTEÚDO
+========================================================= */
+
+main {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+/* =========================================================
+   UTILIZADOR
+========================================================= */
+
+.utilizador-logado {
+    padding: 8px 20px;
+
+    background: var(--verde-claro);
+
+    color: var(--verde-escuro);
+
+    font-size: 14px;
+    font-weight: bold;
+
+    text-align: center;
+}
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+.acesso {
+    max-width: 500px;
+    margin: 25px auto !important;
+}
+
+.acesso h2 {
+    text-align: center;
+}
+
+.acesso button {
+    width: 100%;
+}
+
+#mensagemAcesso {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* =========================================================
+   HERO / BANNER
+========================================================= */
+
+.hero {
+    position: relative;
+
+    margin: 18px 20px;
+
+    min-height: 285px;
+
+    padding: 45px 35px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 28px;
+
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(45, 190, 105, 0.35),
+            transparent 30%
+        ),
+        linear-gradient(
+            120deg,
+            #082b50,
+            #123d61 55%,
+            #08733b
+        );
+
+    color: white;
+
+    box-shadow: 0 8px 25px rgba(16, 45, 85, 0.18);
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -70px;
+    bottom: -90px;
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(255, 255, 255, 0.14);
+}
+
+.hero h1 {
+    position: relative;
+    z-index: 2;
+
+    font-size: clamp(32px, 6vw, 52px);
+
+    margin-bottom: 12px;
+
+    line-height: 1.05;
+}
+
+.hero p {
+    position: relative;
+    z-index: 2;
+
+    max-width: 500px;
+
+    font-size: 17px;
+
+    margin-bottom: 7px;
+
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.hero::before {
+    content: "✦";
+
+    position: absolute;
+
+    right: 70px;
+    top: 40px;
+
+    font-size: 70px;
+
+    color: rgba(255, 255, 255, 0.10);
+}
+
+/* =========================================================
+   CARTÕES / ATALHOS
+========================================================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+
+    padding: 5px 20px 20px;
+}
+
+.card {
+    min-height: 125px;
+
+    background: white;
+
+    padding: 20px 14px;
+
+    border-radius: 18px;
+
+    border: 1px solid var(--borda);
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.09);
+}
+
+.card h2 {
+    color: var(--azul);
+
+    font-size: 17px;
+
+    margin-bottom: 7px;
+}
+
+.card p {
+    color: var(--cinza-texto);
+
+    font-size: 13px;
+}
+
+/* =========================================================
+   SECÇÕES
+========================================================= */
+
+.secao {
+    background: white;
+
+    margin: 18px 20px;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    border: 1px solid var(--borda);
+
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.05);
+}
+
+.secao h2 {
+    color: var(--azul);
+
+    font-size: 24px;
+
+    margin-bottom: 20px;
+}
+
+/* =========================================================
+   CONTA
+========================================================= */
+
+.conta-info {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 15px;
+}
+
+.credito-item {
+    padding: 18px;
+
+    background: var(--verde-claro);
+
+    border-radius: 15px;
+
+    border: 1px solid #d4efdf;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.credito-item strong {
+    color: var(--azul);
+
+    font-size: 14px;
+}
+
+.credito-item span {
+    color: var(--verde-escuro);
+
+    font-size: 25px;
+
+    font-weight: 800;
+}
+
+.comprar-creditos {
+    margin-top: 20px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid var(--borda);
+}
+
+.comprar-creditos h3 {
+    margin-bottom: 8px;
+}
+
+.comprar-creditos p {
+    color: var(--cinza-texto);
+
+    font-size: 14px;
+
+    margin-bottom: 12px;
+}
+
+.comprar-creditos button {
+    margin-right: 8px;
+}
+
+/* =========================================================
+   FORMULÁRIOS
+========================================================= */
+
+label {
+    display: block;
+
+    margin-top: 15px;
+    margin-bottom: 7px;
+
+    color: var(--azul);
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+input,
+select {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid #d5d9df;
+
+    border-radius: 11px;
+
+    background: white;
+
+    color: #1f2937;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--verde);
+
+    box-shadow: 0 0 0 3px rgba(21, 148, 71, 0.12);
+}
+
+/* =========================================================
+   BOTÕES
+========================================================= */
+
+button {
+    margin-top: 18px;
+
+    padding: 13px 22px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: var(--verde);
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s,
+        background 0.15s;
+}
+
+button:hover {
+    background: var(--verde-escuro);
+
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* =========================================================
+   GERADOR DE IA
+========================================================= */
+
+#planos {
+    border-top: 4px solid var(--verde);
+}
+
+#planos h2::before {
+    content: "✦ ";
+
+    color: var(--verde);
+}
+
+#gerarPlano {
+    width: 100%;
+
+    margin-top: 22px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--azul),
+            var(--verde)
+        );
+
+    font-size: 17px;
+
+    padding: 15px;
+}
+
+#gerarPlano:hover {
+    background:
+        linear-gradient(
+            90deg,
+            var(--azul-escuro),
+            var(--verde-escuro)
+        );
+}
+
+#mensagemPerfil,
+#mensagemGeracao,
+#mensagemConta,
+#mensagemCompra {
+    margin-top: 13px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+/* =========================================================
+   RESULTADO
+========================================================= */
+
+.resultado {
+    min-height: 200px;
+}
+
+#conteudoPlano {
+    white-space: pre-wrap;
+
+    background: #f7faf8;
+
+    padding: 20px;
+
+    border-radius: 14px;
+
+    border-left: 4px solid var(--verde);
+
+    color: #263238;
+
+    overflow-x: auto;
+}
+
+/* =========================================================
+   PERFIL
+========================================================= */
+
+#perfil {
+    position: relative;
+}
+
+#guardarPerfil {
+    width: 100%;
+
+    background: var(--verde);
+}
+
+/* =========================================================
+   RODAPÉ
+========================================================= */
+
+footer {
+    margin-top: 35px;
+
+    padding: 30px 20px 100px;
+
+    background: var(--azul);
+
+    color: white;
+
+    text-align: center;
+}
+
+footer p {
+    margin: 5px;
+
+    font-size: 13px;
+
+    opacity: 0.85;
+}
+
+/* =========================================================
+   NAVEGAÇÃO INFERIOR
+========================================================= */
+
+body::after {
+    content: "⌂\A Início     Planos     Explorar     Comunidade     Mais";
+
+    white-space: pre;
+
+    position: fixed;
+
+    z-index: 2000;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 68px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+
+    border-top: 1px solid var(--borda);
+
+    color: var(--azul);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-align: center;
+
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.08);
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/* =========================================================
+   TELEMÓVEL
+========================================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding-bottom: 78px;
+    }
+
+    .cabecalho {
+        padding: 12px 16px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .hero {
+        margin: 12px 14px;
+
+        min-height: 260px;
+
+        padding: 32px 25px;
+
+        border-radius: 23px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 7px;
+
+        padding: 4px 14px 12px;
+    }
+
+    .card {
+        min-height: 105px;
+
+        padding: 15px 6px;
+
+        border-radius: 15px;
+    }
+
+    .card h2 {
+        font-size: 13px;
+    }
+
+    .card p {
+        display: none;
+    }
+
+    .secao {
+        margin: 13px 14px;
+
+        padding: 20px;
+
+        border-radius: 17px;
+    }
+
+    .secao h2 {
+        font-size: 21px;
+    }
+
+    .conta-info {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .comprar-creditos button {
+        width: 100%;
+
+        margin-right: 0;
+    }
+
+    .btn-menu {
+        width: 40px;
+        height: 40px;
+    }
+
+    .menu {
+        top: 65px;
+    }
+
+}
+
+/* =========================================================
+   TELEMÓVEL MUITO PEQUENO
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .cards {
+        gap: 5px;
+    }
+
+    .card {
+        padding: 12px 4px;
+    }
+
+    .card h2 {
+        font-size: 11px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .conta-info {
+        grid-template-columns: 1fr;
+    }
+
+}

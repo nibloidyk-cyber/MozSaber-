@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MozSaber</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+<!-- =====================================================
+     CABEÇALHO
+====================================================== -->
+
+<header class="cabecalho">
+
+    <div class="logo">
+        MOZSABER
+    </div>
+
+    <button
+        id="btnMenu"
+        class="btn-menu"
+        type="button"
+    >
+        Menu
+    </button>
+
+</header>
+
+
+<!-- =====================================================
+     MENU
+====================================================== -->
+
+<nav
+    id="menu"
+    class="menu"
+>
+
+    <a href="#inicio">
+        Início
+    </a>
+
+    <a href="#planos">
+        Criar Plano
+    </a>
+
+    <a href="#perfil">
+        Meu Perfil
+    </a>
+
+    <a href="#conta">
+        Minha Conta
+    </a>
+
+    <a href="#resultado">
+        Meus Planos
+    </a>
+
+</nav>
+
+
+<main>
+
+    <!-- =================================================
+         UTILIZADOR LOGADO
+    ================================================== -->
+
+    <div
+        id="utilizadorLogado"
+        class="utilizador-logado"
+    ></div>
+
+
+    <!-- =================================================
+         LOGIN
+    ================================================== -->
+
+    <section
+        id="acesso"
+        class="secao acesso"
+    >
+
+        <h2>
+            Entrar no MozSaber
+        </h2>
+
+
+        <label for="email">
+            Email
+        </label>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Digite o seu email"
+        >
+
+
+        <label for="password">
+            Palavra-passe
+        </label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Digite a sua palavra-passe"
+        >
+
+
+        <button
+            id="btnEntrar"
+            type="button"
+        >
+            Entrar
+        </button>
+
+
+        <button
+            id="btnCriarConta"
+            type="button"
+        >
+            Criar conta
+        </button>
+
+
+        <p id="mensagemAcesso"></p>
+
+    </section>
+
+
+    <!-- =================================================
+         INÍCIO / BANNER
+    ================================================== -->
+
+    <section
+        id="inicio"
+        class="hero"
+    >
+
+        <h1>
+            Bem-vindo ao MozSaber
+        </h1>
+
+        <p>
+            A sua plataforma educativa para professores
+            e formandos.
+        </p>
+
+        <p>
+            Crie planos de aula com apoio da
+            inteligência artificial.
+        </p>
+
+        <button
+            type="button"
+            onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'})"
+        >
+            ✦ Criar Plano de Aula
+        </button>
+
+    </section>
+
+
+    <!-- =================================================
+         ATALHOS
+    ================================================== -->
+
+    <section class="cards">
+
+        <div
+            class="card"
+            onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'})"
+        >
+
+            <h2>
+                📚
+            </h2>
+
+            <h2>
+                Planos
+            </h2>
+
+            <p>
+                Crie planos de aula.
+            </p>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="document.getElementById('perfil').scrollIntoView({behavior:'smooth'})"
+        >
+
+            <h2>
+                👤
+            </h2>
+
+            <h2>
+                Perfil
+            </h2>
+
+            <p>
+                Os seus dados.
+            </p>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="document.getElementById('resultado').scrollIntoView({behavior:'smooth'})"
+        >
+
+            <h2>
+                📄
+            </h2>
+
+            <h2>
+                Meus Planos
+            </h2>
+
+            <p>
+                Consulte os seus planos.
+            </p>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="document.getElementById('conta').scrollIntoView({behavior:'smooth'})"
+        >
+
+            <h2>
+                💳
+            </h2>
+
+            <h2>
+                Conta
+            </h2>
+
+            <p>
+                Créditos e compras.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         MINHA CONTA
+    ================================================== -->
+
+    <section
+        id="conta"
+        class="secao conta"
+    >
+
+        <h2>
+            💳 Minha Conta
+        </h2>
+
+
+        <div class="conta-info">
+
+            <div class="credito-item">
+
+                <strong>
+                    Planos gratuitos
+                </strong>
+
+                <span id="planosGratis">
+                    --
+                </span>
+
+            </div>
+
+
+            <div class="credito-item">
+
+                <strong>
+                    Créditos pagos
+                </strong>
+
+                <span id="creditosPagos">
+                    --
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <p id="mensagemConta"></p>
+
+
+        <div class="comprar-creditos">
+
+            <h3>
+                Comprar planos
+            </h3>
+
+            <p>
+                Depois dos planos gratuitos,
+                poderá adquirir novos créditos.
+            </p>
+
+
+            <button
+                id="btnComprar1"
+                type="button"
+            >
+                1 plano — 5 MZN
+            </button>
+
+
+            <button
+                id="btnComprar3"
+                type="button"
+            >
+                3 planos — 10 MZN
+            </button>
+
+
+            <p id="mensagemCompra"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         RECURSOS
+    ================================================== -->
+
+    <section class="secao">
+
+        <h2>
+            📖 Biblioteca de Recursos
+        </h2>
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h2>
+                    📚
+                </h2>
+
+                <h2>
+                    Manuais
+                </h2>
+
+                <p>
+                    Materiais de apoio ao ensino.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    📝
+                </h2>
+
+                <h2>
+                    Fichas
+                </h2>
+
+                <p>
+                    Fichas para apoiar as aulas.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    📋
+                </h2>
+
+                <h2>
+                    Recursos Didácticos
+                </h2>
+
+                <p>
+                    Materiais para professores.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         PERFIL
+    ================================================== -->
+
+    <section
+        id="perfil"
+        class="secao"
+    >
+
+        <h2>
+            👤 Meu Perfil
+        </h2>
+
+
+        <label for="nomeProfessor">
+            Nome do professor/a
+        </label>
+
+        <input
+            type="text"
+            id="nomeProfessor"
+            placeholder="Digite o seu nome"
+        >
+
+
+        <label for="escola">
+            Escola
+        </label>
+
+        <input
+            type="text"
+            id="escola"
+            placeholder="Digite o nome da escola"
+        >
+
+
+        <label for="turma">
+            Turma
+        </label>
+
+        <input
+            type="text"
+            id="turma"
+            placeholder="Ex.: A"
+        >
+
+
+        <label for="numeroAlunos">
+            Número de alunos
+        </label>
+
+        <input
+            type="number"
+            id="numeroAlunos"
+            placeholder="Ex.: 50"
+        >
+
+
+        <button
+            id="guardarPerfil"
+            type="button"
+        >
+            Guardar Perfil
+        </button>
+
+
+        <p id="mensagemPerfil"></p>
+
+    </section>
+
+
+    <!-- =================================================
+         GERADOR DE PLANO
+    ================================================== -->
+
+    <section
+        id="planos"
+        class="secao"
+    >
+
+        <h2>
+            Gerador Inteligente
+        </h2>
+
+
+        <p>
+            Crie um plano de aula adaptado à
+            metodologia do MozSaber.
+        </p>
+
+
+        <label for="disciplina">
+            Disciplina
+        </label>
+
+        <select id="disciplina">
+
+            <option value="Matemática">
+                Matemática
+            </option>
+
+            <option value="Português">
+                Português
+            </option>
+
+            <option value="Ciências Naturais">
+                Ciências Naturais
+            </option>
+
+            <option value="Biologia">
+                Biologia
+            </option>
+
+            <option value="Ciências Sociais">
+                Ciências Sociais
+            </option>
+
+        </select>
+
+
+        <label for="classe">
+            Classe
+        </label>
+
+        <select id="classe">
+
+            <option>1ª Classe</option>
+            <option>2ª Classe</option>
+            <option>3ª Classe</option>
+            <option>4ª Classe</option>
+            <option>5ª Classe</option>
+            <option>6ª Classe</option>
+            <option>7ª Classe</option>
+            <option>8ª Classe</option>
+            <option>9ª Classe</option>
+            <option>10ª Classe</option>
+            <option>11ª Classe</option>
+            <option>12ª Classe</option>
+
+        </select>
+
+
+        <label for="tema">
+            Tema
+        </label>
+
+        <input
+            type="text"
+            id="tema"
+            placeholder="Digite o tema da aula"
+        >
+
+
+        <label for="duracao">
+            Duração
+        </label>
+
+        <select id="duracao">
+
+            <option>45 minutos</option>
+            <option>50 minutos</option>
+            <option>60 minutos</option>
+            <option>90 minutos</option>
+
+        </select>
+
+
+        <label for="tipoAula">
+            Tipo de aula
+        </label>
+
+        <select id="tipoAula">
+
+            <option>Introdução</option>
+            <option>Desenvolvimento</option>
+            <option>Consolidação</option>
+            <option>Avaliação</option>
+
+        </select>
+
+
+        <button
+            id="gerarPlano"
+            type="button"
+        >
+            ✦ Gerar Plano de Aula
+        </button>
+
+
+        <p id="mensagemGeracao"></p>
+
+    </section>
+
+
+    <!-- =================================================
+         RESULTADO
+    ================================================== -->
+
+    <section
+        id="resultado"
+        class="secao resultado"
+    >
+
+        <h2>
+            📄 Plano Gerado
+        </h2>
+
+
+        <div id="conteudoPlano">
+
+            O plano gerado aparecerá aqui.
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     RODAPÉ
+====================================================== -->
+
+<footer>
+
+    <p>
+        © 2026 MozSaber
+    </p>
+
+    <p>
+        Plataforma educativa para professores e formandos.
+    </p>
+
+</footer>
+
+
+<!-- =====================================================
+     SUPABASE
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- =====================================================
+     APP
+====================================================== -->
+
+<script src="app.js"></script>
+
+</body>
+</html>
