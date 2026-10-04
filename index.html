@@ -65,7 +65,162 @@
 
 
     <!-- =========================
-         PÁGINA 2 — PERFIL
+         PÁGINA 2 — INÍCIO / DASHBOARD
+    ========================== -->
+    <section id="paginaInicio" class="pagina pagina-interna">
+
+        <header class="cabecalho-dashboard">
+
+            <div>
+                <p class="saudacao">Bem-vindo ao</p>
+                <h1>MOZSABER</h1>
+                <p>Educação ao alcance de todos.</p>
+            </div>
+
+        </header>
+
+
+        <main class="dashboard-conteudo">
+
+            <!-- BOTÃO PRINCIPAL -->
+            <button
+                id="btnCriarPlanoDashboard"
+                class="btn-criar-plano"
+            >
+                <span class="icone-grande">＋</span>
+
+                <span>
+                    <strong>Criar Plano de Aula</strong>
+                    <small>Prepare a sua aula com o MozSaber</small>
+                </span>
+
+                <span class="seta">›</span>
+            </button>
+
+
+            <!-- ATALHOS -->
+            <div class="atalhos-dashboard">
+
+                <button
+                    class="atalho"
+                    id="atalhoPlano"
+                >
+                    <span class="icone-atalho">📄</span>
+                    <strong>Plano</strong>
+                </button>
+
+                <button
+                    class="atalho"
+                    id="atalhoPerfil"
+                >
+                    <span class="icone-atalho">👤</span>
+                    <strong>Perfil</strong>
+                </button>
+
+                <button
+                    class="atalho"
+                    id="atalhoMeusPlanos"
+                >
+                    <span class="icone-atalho">📁</span>
+                    <strong>Meus Planos</strong>
+                </button>
+
+                <button
+                    class="atalho"
+                    id="atalhoRecursos"
+                >
+                    <span class="icone-atalho">📚</span>
+                    <strong>Recursos</strong>
+                </button>
+
+            </div>
+
+
+            <!-- CARTÕES -->
+            <div class="cartoes-dashboard">
+
+                <button
+                    class="cartao-dashboard"
+                    id="cartaoPlanos"
+                >
+                    <div class="cartao-icone">📄</div>
+
+                    <div class="cartao-texto">
+                        <h3>Planos de Aula</h3>
+                        <p>
+                            Crie planos de aula de forma simples
+                            e organizada.
+                        </p>
+                    </div>
+
+                    <span class="seta">›</span>
+                </button>
+
+
+                <button
+                    class="cartao-dashboard"
+                    id="cartaoBiblioteca"
+                >
+                    <div class="cartao-icone">📚</div>
+
+                    <div class="cartao-texto">
+                        <h3>Biblioteca de Recursos</h3>
+                        <p>
+                            Manuais, recursos didácticos e outros
+                            materiais educativos.
+                        </p>
+                    </div>
+
+                    <span class="seta">›</span>
+                </button>
+
+            </div>
+
+        </main>
+
+
+        <!-- BARRA INFERIOR -->
+        <nav class="barra-inferior">
+
+            <button
+                class="item-nav item-nav-ativo"
+                id="navInicio"
+            >
+                <span class="nav-icone">⌂</span>
+                <span>Início</span>
+            </button>
+
+            <button
+                class="item-nav"
+                data-abrir="biblioteca"
+            >
+                <span class="nav-icone">▣</span>
+                <span>Biblioteca</span>
+            </button>
+
+            <button
+                class="item-nav"
+                data-abrir="conta"
+            >
+                <span class="nav-icone">●</span>
+                <span>Minha conta</span>
+            </button>
+
+            <button
+                class="item-nav"
+                data-abrir="autor"
+            >
+                <span class="nav-icone">◉</span>
+                <span>Autor</span>
+            </button>
+
+        </nav>
+
+    </section>
+
+
+    <!-- =========================
+         PÁGINA 3 — PERFIL
     ========================== -->
     <section id="paginaPerfil" class="pagina pagina-interna">
 
@@ -73,7 +228,7 @@
 
             <div>
                 <h1>Meu Perfil</h1>
-                <p>Preencha os seus dados</p>
+                <p>Os seus dados pessoais e escolares</p>
             </div>
 
         </header>
@@ -92,7 +247,6 @@
                     placeholder="Digite o seu nome"
                 >
 
-
                 <label for="escola">
                     Escola
                 </label>
@@ -103,7 +257,6 @@
                     placeholder="Digite o nome da escola"
                 >
 
-
                 <label for="turma">
                     Turma
                 </label>
@@ -113,7 +266,6 @@
                     id="turma"
                     placeholder="Ex.: A"
                 >
-
 
                 <label for="numeroAlunos">
                     N.º de alunos
@@ -126,14 +278,13 @@
                     min="0"
                 >
 
-
                 <div id="mensagemPerfil" class="mensagem"></div>
 
                 <button
                     id="guardarPerfil"
                     class="btn-principal btn-proximo"
                 >
-                    Próximo
+                    Guardar e continuar
                 </button>
 
             </div>
@@ -141,13 +292,21 @@
         </main>
 
 
-        <!-- BARRA INFERIOR -->
         <nav class="barra-inferior">
+
+            <button
+                class="item-nav"
+                id="navInicioPerfil"
+            >
+                <span class="nav-icone">⌂</span>
+                <span>Início</span>
+            </button>
 
             <button
                 class="item-nav"
                 data-abrir="biblioteca"
             >
+                <span class="nav-icone">▣</span>
                 <span>Biblioteca</span>
             </button>
 
@@ -155,6 +314,7 @@
                 class="item-nav"
                 data-abrir="conta"
             >
+                <span class="nav-icone">●</span>
                 <span>Minha conta</span>
             </button>
 
@@ -162,6 +322,7 @@
                 class="item-nav"
                 data-abrir="autor"
             >
+                <span class="nav-icone">◉</span>
                 <span>Autor</span>
             </button>
 
@@ -171,7 +332,7 @@
 
 
     <!-- =========================
-         PÁGINA 3 — GERADOR
+         PÁGINA 4 — GERADOR
     ========================== -->
     <section id="paginaGerador" class="pagina pagina-interna">
 
@@ -179,11 +340,10 @@
 
             <div>
                 <h1>Criar Plano</h1>
-                <p>Preencha os dados da aula</p>
+                <p>Prepare a sua aula com o MozSaber</p>
             </div>
 
         </header>
-
 
         <main class="conteudo-pagina">
 
@@ -199,7 +359,6 @@
                     placeholder="Escreva a disciplina"
                 >
 
-
                 <label for="unidadeTematica">
                     Unidade temática
                 </label>
@@ -210,7 +369,6 @@
                     placeholder="Escreva a unidade temática"
                 >
 
-
                 <label for="tema">
                     Tema
                 </label>
@@ -220,7 +378,6 @@
                     id="tema"
                     placeholder="Escreva o tema da aula"
                 >
-
 
                 <label for="tipoAula">
                     Tipo de aula
@@ -250,7 +407,6 @@
 
                 </select>
 
-
                 <label for="duracao">
                     Duração
                 </label>
@@ -260,7 +416,6 @@
                     id="duracao"
                     placeholder="Ex.: 45 minutos"
                 >
-
 
                 <label for="classe">
                     Classe
@@ -287,9 +442,7 @@
 
                 </select>
 
-
                 <div id="mensagemGeracao" class="mensagem"></div>
-
 
                 <button
                     id="gerarPlano"
@@ -303,13 +456,21 @@
         </main>
 
 
-        <!-- BARRA INFERIOR -->
         <nav class="barra-inferior">
+
+            <button
+                class="item-nav"
+                id="navInicioGerador"
+            >
+                <span class="nav-icone">⌂</span>
+                <span>Início</span>
+            </button>
 
             <button
                 class="item-nav"
                 data-abrir="biblioteca"
             >
+                <span class="nav-icone">▣</span>
                 <span>Biblioteca</span>
             </button>
 
@@ -317,6 +478,7 @@
                 class="item-nav"
                 data-abrir="conta"
             >
+                <span class="nav-icone">●</span>
                 <span>Minha conta</span>
             </button>
 
@@ -324,6 +486,7 @@
                 class="item-nav"
                 data-abrir="autor"
             >
+                <span class="nav-icone">◉</span>
                 <span>Autor</span>
             </button>
 
@@ -333,7 +496,7 @@
 
 
     <!-- =========================
-         JANELA — BIBLIOTECA
+         BIBLIOTECA
     ========================== -->
     <div id="painelBiblioteca" class="painel">
 
@@ -363,7 +526,7 @@
 
 
     <!-- =========================
-         JANELA — MINHA CONTA
+         MINHA CONTA
     ========================== -->
     <div id="painelConta" class="painel">
 
@@ -418,7 +581,7 @@
 
 
     <!-- =========================
-         JANELA — AUTOR
+         AUTOR
     ========================== -->
     <div id="painelAutor" class="painel">
 
@@ -430,8 +593,6 @@
 
             <h2>Sobre o Autor</h2>
 
-
-            <!-- IDENTIFICAÇÃO -->
             <div class="autor-info">
 
                 <div class="autor-avatar">
@@ -448,17 +609,12 @@
 
             </div>
 
-
-            <!-- DADOS PESSOAIS -->
             <div class="dados-autor">
 
                 <div class="dado-autor">
                     <strong>Data de nascimento</strong>
-                    <span>
-                        15 de Agosto de 2003
-                    </span>
+                    <span>15 de Agosto de 2003</span>
                 </div>
-
 
                 <div class="dado-autor">
                     <strong>Naturalidade</strong>
@@ -469,7 +625,6 @@
                     </span>
                 </div>
 
-
                 <div class="dado-autor">
                     <strong>Filiação</strong>
                     <span>
@@ -477,7 +632,6 @@
                         e de Angerta Constância Isaque.
                     </span>
                 </div>
-
 
                 <div class="dado-autor">
                     <strong>Formação</strong>
@@ -491,8 +645,6 @@
 
             </div>
 
-
-            <!-- CONTACTOS -->
             <div class="contactos-autor">
 
                 <h3>Contactos</h3>
@@ -504,16 +656,12 @@
                     WhatsApp: 83 534 8994
                 </a>
 
-                <a
-                    href="tel:+258877906354"
-                >
+                <a href="tel:+258877906354">
                     Contacto: 87 790 6354
                 </a>
 
             </div>
 
-
-            <!-- SOBRE O MOZSABER -->
             <div class="sobre-mozsaber">
 
                 <h3>Sobre o MozSaber</h3>
@@ -528,8 +676,6 @@
 
             </div>
 
-
-            <!-- AJUDA -->
             <button class="opcao-painel">
                 Ajuda
             </button>
@@ -559,18 +705,25 @@
                 id="conteudoPlano"
                 class="card resultado-plano"
             >
-                <!-- O plano será colocado aqui pelo app.js -->
             </div>
 
         </main>
-
 
         <nav class="barra-inferior">
 
             <button
                 class="item-nav"
+                id="navInicioResultado"
+            >
+                <span class="nav-icone">⌂</span>
+                <span>Início</span>
+            </button>
+
+            <button
+                class="item-nav"
                 data-abrir="biblioteca"
             >
+                <span class="nav-icone">▣</span>
                 <span>Biblioteca</span>
             </button>
 
@@ -578,6 +731,7 @@
                 class="item-nav"
                 data-abrir="conta"
             >
+                <span class="nav-icone">●</span>
                 <span>Minha conta</span>
             </button>
 
@@ -585,6 +739,7 @@
                 class="item-nav"
                 data-abrir="autor"
             >
+                <span class="nav-icone">◉</span>
                 <span>Autor</span>
             </button>
 
@@ -596,7 +751,7 @@
     <!-- SUPABASE -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- NOSSO JAVASCRIPT -->
+    <!-- JAVASCRIPT -->
     <script src="app.js"></script>
 
 </body>

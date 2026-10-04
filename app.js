@@ -28,6 +28,9 @@ const supabaseClient =
 const paginaLogin =
     document.getElementById("paginaLogin");
 
+const paginaInicio =
+    document.getElementById("paginaInicio");
+
 const paginaPerfil =
     document.getElementById("paginaPerfil");
 
@@ -58,6 +61,7 @@ function mostrarPagina(nomePagina) {
 
     const paginas = [
         paginaLogin,
+        paginaInicio,
         paginaPerfil,
         paginaGerador,
         paginaResultado
@@ -74,6 +78,11 @@ function mostrarPagina(nomePagina) {
 
     if (nomePagina === "login" && paginaLogin) {
         paginaLogin.style.display = "flex";
+    }
+
+
+    if (nomePagina === "inicio" && paginaInicio) {
+        paginaInicio.style.display = "block";
     }
 
 
@@ -199,7 +208,7 @@ async function carregarPerfil() {
 
 
 // ======================================================
-// GUARDAR PERFIL E IR PARA O GERADOR
+// GUARDAR PERFIL
 // ======================================================
 
 if (guardarPerfil) {
@@ -420,10 +429,12 @@ if (btnEntrar) {
 
             await carregarPerfil();
 
+            await carregarConta();
+
 
             setTimeout(() => {
 
-                mostrarPagina("perfil");
+                mostrarPagina("inicio");
 
             }, 300);
 
@@ -518,10 +529,12 @@ if (btnCriarConta) {
 
                 await carregarPerfil();
 
+                await carregarConta();
+
 
                 setTimeout(() => {
 
-                    mostrarPagina("perfil");
+                    mostrarPagina("inicio");
 
                 }, 300);
 
@@ -1059,10 +1072,6 @@ function abrirBibliotecaOpcao(opcao) {
     }
 
 
-    // ==================================================
-    // MANUAIS
-    // ==================================================
-
     if (opcao === "manuais") {
 
         mostrarMenuClasses();
@@ -1581,7 +1590,195 @@ function mostrarMenuBiblioteca() {
 
 
 // ======================================================
-// ABRIR PAINÉIS
+// NAVEGAÇÃO DO DASHBOARD
+// ======================================================
+
+const btnCriarPlanoDashboard =
+    document.getElementById(
+        "btnCriarPlanoDashboard"
+    );
+
+const atalhoPlano =
+    document.getElementById(
+        "atalhoPlano"
+    );
+
+const atalhoPerfil =
+    document.getElementById(
+        "atalhoPerfil"
+    );
+
+const atalhoMeusPlanos =
+    document.getElementById(
+        "atalhoMeusPlanos"
+    );
+
+const atalhoRecursos =
+    document.getElementById(
+        "atalhoRecursos"
+    );
+
+const cartaoPlanos =
+    document.getElementById(
+        "cartaoPlanos"
+    );
+
+const cartaoBiblioteca =
+    document.getElementById(
+        "cartaoBiblioteca"
+    );
+
+
+// Criar Plano
+
+if (btnCriarPlanoDashboard) {
+
+    btnCriarPlanoDashboard.addEventListener(
+        "click",
+        () => {
+
+            mostrarPagina("gerador");
+
+        }
+    );
+}
+
+
+// Plano
+
+if (atalhoPlano) {
+
+    atalhoPlano.addEventListener(
+        "click",
+        () => {
+
+            mostrarPagina("gerador");
+
+        }
+    );
+}
+
+
+// Perfil
+
+if (atalhoPerfil) {
+
+    atalhoPerfil.addEventListener(
+        "click",
+        async () => {
+
+            await carregarPerfil();
+
+            mostrarPagina("perfil");
+
+        }
+    );
+}
+
+
+// Meus Planos
+
+if (atalhoMeusPlanos) {
+
+    atalhoMeusPlanos.addEventListener(
+        "click",
+        () => {
+
+            alert(
+                "A área Meus Planos será adicionada em breve."
+            );
+
+        }
+    );
+}
+
+
+// Recursos
+
+if (atalhoRecursos) {
+
+    atalhoRecursos.addEventListener(
+        "click",
+        () => {
+
+            mostrarMenuBiblioteca();
+
+            abrirPainel("biblioteca");
+
+        }
+    );
+}
+
+
+// Cartão Planos
+
+if (cartaoPlanos) {
+
+    cartaoPlanos.addEventListener(
+        "click",
+        () => {
+
+            mostrarPagina("gerador");
+
+        }
+    );
+}
+
+
+// Cartão Biblioteca
+
+if (cartaoBiblioteca) {
+
+    cartaoBiblioteca.addEventListener(
+        "click",
+        () => {
+
+            mostrarMenuBiblioteca();
+
+            abrirPainel("biblioteca");
+
+        }
+    );
+}
+
+
+// ======================================================
+// BOTÕES INÍCIO
+// ======================================================
+
+const botoesInicio = [
+
+    document.getElementById("navInicio"),
+
+    document.getElementById("navInicioPerfil"),
+
+    document.getElementById("navInicioGerador"),
+
+    document.getElementById("navInicioResultado")
+
+];
+
+
+botoesInicio.forEach((botao) => {
+
+    if (botao) {
+
+        botao.addEventListener(
+            "click",
+            () => {
+
+                mostrarPagina("inicio");
+
+            }
+        );
+
+    }
+
+});
+
+
+// ======================================================
+// ABRIR PAINÉIS DA BARRA INFERIOR
 // ======================================================
 
 document
@@ -1755,7 +1952,7 @@ async function verificarSessao() {
 
         await carregarConta();
 
-        mostrarPagina("perfil");
+        mostrarPagina("inicio");
 
     } else {
 
