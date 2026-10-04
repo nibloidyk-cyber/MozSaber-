@@ -7,6 +7,1807 @@
     <title>MozSaber</title>
 
     <link rel="stylesheet" href="style.css">
+    <style id="mozsaber-inline-css">
+/* ======================================================
+   MOZSABER — STYLE.CSS
+   ====================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --verde: #168a52;
+    --verde-escuro: #0d6b3f;
+    --verde-claro: #e9f7ef;
+    --verde-suave: #f2faf5;
+    --branco: #ffffff;
+    --fundo: #f5f8f6;
+    --texto: #17231d;
+    --texto-suave: #6b766f;
+    --borda: #e1e9e4;
+    --vermelho: #d64545;
+    --sombra: 0 6px 20px rgba(20, 70, 45, 0.08);
+    --raio: 18px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background: var(--fundo);
+    color: var(--texto);
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+
+/* ======================================================
+   PÁGINAS
+   ====================================================== */
+
+.pagina {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.pagina-interna {
+    padding-bottom: 90px;
+}
+
+
+/* ======================================================
+   LOGIN
+   ====================================================== */
+
+#paginaLogin {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background:
+        linear-gradient(
+            145deg,
+            #eaf8ef 0%,
+            #ffffff 55%,
+            #eef9f3 100%
+        );
+}
+
+.login-container {
+    width: 100%;
+    max-width: 430px;
+    background: var(--branco);
+    border-radius: 25px;
+    padding: 35px 28px;
+    box-shadow: var(--sombra);
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-logo h1 {
+    color: var(--verde);
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.login-logo p {
+    color: var(--texto-suave);
+    margin-top: 5px;
+}
+
+.login-container h2 {
+    font-size: 24px;
+    margin-bottom: 22px;
+}
+
+.login-container input {
+    width: 100%;
+    border: 1px solid var(--borda);
+    border-radius: 13px;
+    padding: 14px;
+    margin-bottom: 13px;
+    outline: none;
+    background: #fbfdfc;
+}
+
+.login-container input:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(22, 138, 82, 0.1);
+}
+
+#btnEntrar,
+#btnCriarConta {
+    width: 100%;
+    border: none;
+    border-radius: 13px;
+    padding: 14px;
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+#btnEntrar {
+    background: var(--verde);
+    color: white;
+}
+
+#btnCriarConta {
+    background: var(--verde-claro);
+    color: var(--verde-escuro);
+}
+
+#mensagemAcesso {
+    text-align: center;
+    margin-top: 15px;
+    color: var(--texto-suave);
+    font-size: 14px;
+}
+
+
+/* ======================================================
+   CABEÇALHO DO DASHBOARD
+   ====================================================== */
+
+#paginaInicio {
+    background: var(--fundo);
+}
+
+.cabecalho-dashboard {
+    background: var(--branco);
+    padding: 30px 22px 25px;
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 28px;
+}
+
+.saudacao {
+    color: var(--texto-suave);
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+
+.cabecalho-dashboard h1 {
+    color: var(--verde);
+    font-size: 31px;
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.cabecalho-dashboard > div > p:last-child {
+    color: var(--texto-suave);
+    margin-top: 7px;
+    font-size: 14px;
+}
+
+
+/* ======================================================
+   CONTEÚDO DASHBOARD
+   ====================================================== */
+
+.dashboard-conteudo {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 22px 18px 25px;
+}
+
+
+/* ======================================================
+   BOTÃO CRIAR PLANO
+   ====================================================== */
+
+.btn-criar-plano {
+    width: 100%;
+    border: none;
+    background: var(--verde);
+    color: var(--branco);
+    padding: 18px 20px;
+    border-radius: 18px;
+    font-size: 17px;
+    font-weight: 750;
+    box-shadow: 0 7px 18px rgba(22, 138, 82, 0.2);
+    margin-bottom: 20px;
+}
+
+.btn-criar-plano:hover {
+    background: var(--verde-escuro);
+}
+
+
+/* ======================================================
+   ATALHOS
+   ====================================================== */
+
+.atalhos-dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.atalho {
+    border: 1px solid var(--borda);
+    background: var(--branco);
+    border-radius: 16px;
+    min-height: 88px;
+    padding: 10px 5px;
+    color: var(--texto);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 3px 12px rgba(20, 70, 45, 0.04);
+}
+
+.atalho:hover {
+    border-color: var(--verde);
+    color: var(--verde);
+}
+
+.atalho .icone {
+    font-size: 25px;
+}
+
+.atalho span {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* ======================================================
+   CARTÕES PRINCIPAIS
+   ====================================================== */
+
+.cartoes-dashboard {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.cartao-dashboard {
+    border: none;
+    background: var(--branco);
+    border-radius: 21px;
+    padding: 22px;
+    min-height: 135px;
+    text-align: left;
+    box-shadow: var(--sombra);
+    position: relative;
+    overflow: hidden;
+}
+
+.cartao-dashboard::after {
+    content: "";
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    right: -25px;
+    bottom: -30px;
+    background: var(--verde-claro);
+    border-radius: 50%;
+}
+
+.cartao-dashboard:hover {
+    transform: translateY(-2px);
+}
+
+.cartao-dashboard h3 {
+    font-size: 19px;
+    margin-bottom: 6px;
+}
+
+.cartao-dashboard p {
+    color: var(--texto-suave);
+    font-size: 14px;
+    max-width: 260px;
+}
+
+.cartao-dashboard .icone {
+    font-size: 29px;
+    margin-bottom: 10px;
+}
+
+
+/* ======================================================
+   PERFIL
+   ====================================================== */
+
+#paginaPerfil,
+#paginaGerador,
+#paginaResultado {
+    padding: 22px 18px 100px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+#paginaPerfil h1,
+#paginaGerador h1,
+#paginaResultado h1 {
+    font-size: 27px;
+    margin-bottom: 20px;
+    color: var(--verde-escuro);
+}
+
+#paginaPerfil input,
+#paginaGerador input,
+#paginaGerador select,
+#paginaGerador textarea {
+    width: 100%;
+    border: 1px solid var(--borda);
+    background: var(--branco);
+    border-radius: 13px;
+    padding: 14px;
+    margin-bottom: 14px;
+    outline: none;
+}
+
+#paginaPerfil input:focus,
+#paginaGerador input:focus,
+#paginaGerador select:focus,
+#paginaGerador textarea:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(22, 138, 82, 0.08);
+}
+
+#guardarPerfil,
+#gerarPlano {
+    width: 100%;
+    border: none;
+    background: var(--verde);
+    color: white;
+    border-radius: 14px;
+    padding: 15px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+#guardarPerfil:hover,
+#gerarPlano:hover {
+    background: var(--verde-escuro);
+}
+
+#mensagemPerfil,
+#mensagemGeracao {
+    text-align: center;
+    color: var(--texto-suave);
+    font-size: 14px;
+    margin: 12px 0;
+}
+
+
+/* ======================================================
+   RESULTADO DO PLANO
+   ====================================================== */
+
+#conteudoPlano {
+    background: var(--branco);
+    border-radius: 18px;
+    padding: 20px;
+    min-height: 250px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    box-shadow: var(--sombra);
+}
+
+
+/* ======================================================
+   BARRA INFERIOR
+   ====================================================== */
+
+.barra-inferior {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    height: 70px;
+
+    background: rgba(255, 255, 255, 0.97);
+    border-top: 1px solid var(--borda);
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    box-shadow: 0 -5px 20px rgba(20, 70, 45, 0.06);
+}
+
+.item-nav {
+    border: none;
+    background: transparent;
+    color: var(--texto-suave);
+
+    min-width: 70px;
+    height: 58px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+}
+
+.item-nav .icone {
+    font-size: 22px;
+}
+
+.item-nav span {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.item-nav:hover,
+.item-nav-ativo {
+    color: var(--verde);
+}
+
+.item-nav-ativo {
+    font-weight: 700;
+}
+
+
+/* ======================================================
+   PAINÉIS
+   ====================================================== */
+
+.painel {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.painel.ativo {
+    display: flex;
+}
+
+.painel-conteudo {
+    width: 100%;
+    max-width: 650px;
+    max-height: 88vh;
+
+    overflow-y: auto;
+
+    background: var(--branco);
+
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+
+    padding: 25px 20px 30px;
+
+    position: relative;
+
+    animation: subirPainel 0.2s ease-out;
+}
+
+@keyframes subirPainel {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.painel-conteudo h2 {
+    font-size: 23px;
+    color: var(--verde-escuro);
+    margin-bottom: 18px;
+}
+
+.btn-fechar {
+    position: absolute;
+    right: 17px;
+    top: 14px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--verde-claro);
+    color: var(--verde-escuro);
+
+    font-size: 25px;
+    line-height: 1;
+}
+
+.opcao-painel {
+    width: 100%;
+
+    border: 1px solid var(--borda);
+    background: var(--branco);
+
+    border-radius: 14px;
+
+    padding: 15px;
+    margin-bottom: 10px;
+
+    text-align: left;
+
+    color: var(--texto);
+    font-weight: 650;
+}
+
+.opcao-painel:hover {
+    border-color: var(--verde);
+    background: var(--verde-suave);
+}
+
+
+/* ======================================================
+   LISTA DE CLASSES
+   ====================================================== */
+
+.lista-classes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.lista-classes .opcao-painel {
+    margin: 0;
+    text-align: center;
+}
+
+
+/* ======================================================
+   BIBLIOTECA VAZIA
+   ====================================================== */
+
+.biblioteca-vazio {
+    text-align: center;
+    padding: 20px 5px;
+}
+
+.biblioteca-icone {
+    font-size: 50px;
+    margin-bottom: 12px;
+}
+
+.biblioteca-vazio p {
+    color: var(--texto-suave);
+    margin-bottom: 12px;
+}
+
+
+/* ======================================================
+   CONTA
+   ====================================================== */
+
+#painelConta .opcao-painel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#btnSair {
+    color: var(--vermelho);
+}
+
+
+/* ======================================================
+   AUTOR
+   ====================================================== */
+
+#painelAutor p {
+    margin-bottom: 9px;
+    color: var(--texto-suave);
+}
+
+#painelAutor strong {
+    color: var(--texto);
+}
+
+
+/* ======================================================
+   RESPONSIVO
+   ====================================================== */
+
+@media (min-width: 700px) {
+
+    .dashboard-conteudo {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .cartoes-dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cartao-dashboard {
+        min-height: 160px;
+    }
+
+    .painel-conteudo {
+        margin-bottom: 0;
+    }
+}
+
+
+@media (max-width: 420px) {
+
+    .cabecalho-dashboard {
+        padding: 25px 18px 22px;
+    }
+
+    .cabecalho-dashboard h1 {
+        font-size: 27px;
+    }
+
+    .dashboard-conteudo {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .atalhos-dashboard {
+        gap: 7px;
+    }
+
+    .atalho {
+        min-height: 82px;
+    }
+
+    .atalho .icone {
+        font-size: 22px;
+    }
+
+    .atalho span {
+        font-size: 11px;
+    }
+}/* =====================================================
+   LOGIN MODERNO - MOZSABER
+   ===================================================== */
+
+.pagina-login {
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.login-fundo {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 18px;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(circle at 15% 15%, rgba(31, 157, 100, 0.16), transparent 30%),
+        radial-gradient(circle at 85% 85%, rgba(31, 157, 100, 0.12), transparent 30%),
+        linear-gradient(145deg, #f5fbf7 0%, #ffffff 48%, #edf8f1 100%);
+}
+
+/* CARTÃO PRINCIPAL */
+
+.login-cartao {
+    width: 100%;
+    max-width: 430px;
+    box-sizing: border-box;
+
+    padding: 34px 30px 25px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border: 1px solid rgba(31, 157, 100, 0.12);
+
+    border-radius: 28px;
+
+    box-shadow:
+        0 25px 60px rgba(22, 80, 50, 0.12),
+        0 8px 25px rgba(22, 80, 50, 0.07);
+
+    animation: entradaLogin 0.55s ease;
+}
+
+@keyframes entradaLogin {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* LOGO */
+
+.login-logo-area {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.login-logo {
+    width: 72px;
+    height: 72px;
+
+    margin: 0 auto 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 22px;
+
+    background: linear-gradient(145deg, #15945b, #20a866);
+
+    color: white;
+
+    font-size: 24px;
+    font-weight: 800;
+
+    box-shadow:
+        0 12px 25px rgba(21, 148, 91, 0.25);
+}
+
+.login-logo-area h1 {
+    margin: 0;
+
+    color: #123c2a;
+
+    font-size: 27px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.login-logo-area p {
+    margin: 5px 0 0;
+
+    color: #718078;
+
+    font-size: 14px;
+}
+
+/* TÍTULO */
+
+.login-titulo {
+    margin-bottom: 24px;
+}
+
+.login-titulo h2 {
+    margin: 0 0 6px;
+
+    color: #18231e;
+
+    font-size: 30px;
+    font-weight: 750;
+}
+
+.login-titulo p {
+    margin: 0;
+
+    color: #6d7872;
+
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* CAMPOS */
+
+.login-formulario {
+    width: 100%;
+}
+
+.campo-login {
+    margin-bottom: 19px;
+}
+
+.campo-login label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 8px;
+
+    color: #29352f;
+
+    font-size: 15px;
+    font-weight: 650;
+}
+
+.icone-campo {
+    display: inline-flex;
+
+    width: 22px;
+    height: 22px;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #15945b;
+
+    font-size: 17px;
+}
+
+/* INPUT */
+
+.input-login {
+    position: relative;
+    width: 100%;
+}
+
+.input-login input {
+    width: 100%;
+    height: 54px;
+
+    box-sizing: border-box;
+
+    padding: 0 16px;
+
+    border: 1.5px solid #dce7e1;
+
+    border-radius: 15px;
+
+    outline: none;
+
+    background: #f9fcfa;
+
+    color: #17231d;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.input-login input::placeholder {
+    color: #9aa69f;
+}
+
+.input-login input:focus {
+    border-color: #15945b;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 4px rgba(21, 148, 91, 0.10);
+}
+
+/* PASSWORD */
+
+.input-password input {
+    padding-right: 52px;
+}
+
+.btn-mostrar-password {
+    position: absolute;
+
+    top: 50%;
+    right: 8px;
+
+    transform: translateY(-50%);
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #718078;
+
+    cursor: pointer;
+
+    border-radius: 10px;
+
+    font-size: 17px;
+}
+
+.btn-mostrar-password:active {
+    background: #edf7f1;
+}
+
+/* MENSAGEM */
+
+.mensagem-acesso {
+    min-height: 20px;
+
+    margin: 2px 0 10px;
+
+    text-align: center;
+
+    font-size: 13px;
+}
+
+/* BOTÃO ENTRAR */
+
+.btn-login-principal {
+    width: 100%;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: linear-gradient(135deg, #15945b, #1ca968);
+
+    color: white;
+
+    font-size: 17px;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 22px rgba(21, 148, 91, 0.20);
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.btn-login-principal:hover {
+    box-shadow:
+        0 14px 28px rgba(21, 148, 91, 0.26);
+}
+
+.btn-login-principal:active {
+    transform: scale(0.98);
+}
+
+.seta-login {
+    font-size: 22px;
+    line-height: 1;
+}
+
+/* SEPARADOR */
+
+.login-separador {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    margin: 22px 0;
+}
+
+.login-separador::before,
+.login-separador::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: #e3ebe6;
+}
+
+.login-separador span {
+    color: #8a958f;
+
+    font-size: 13px;
+}
+
+/* CRIAR CONTA */
+
+.btn-criar-conta {
+    width: 100%;
+    height: 53px;
+
+    border: 1.5px solid #b9ddc8;
+
+    border-radius: 15px;
+
+    background: #eff9f3;
+
+    color: #117448;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.18s ease;
+}
+
+.btn-criar-conta:hover {
+    background: #e4f5eb;
+
+    border-color: #15945b;
+}
+
+.btn-criar-conta:active {
+    transform: scale(0.98);
+}
+
+/* RODAPÉ */
+
+.login-rodape {
+    margin-top: 26px;
+
+    text-align: center;
+}
+
+.login-rodape p {
+    margin: 0 0 5px;
+
+    color: #75827b;
+
+    font-size: 12px;
+}
+
+.login-rodape span {
+    color: #a1aaa5;
+
+    font-size: 11px;
+}
+
+/* =====================================================
+   TELEMÓVEIS PEQUENOS
+   ===================================================== */
+
+@media (max-width: 380px) {
+
+    .login-fundo {
+        padding: 18px 12px;
+    }
+
+    .login-cartao {
+        padding: 28px 20px 22px;
+
+        border-radius: 23px;
+    }
+
+    .login-logo {
+        width: 64px;
+        height: 64px;
+
+        border-radius: 19px;
+    }
+
+    .login-logo-area h1 {
+        font-size: 24px;
+    }
+
+    .login-titulo h2 {
+        font-size: 27px;
+    }
+
+    .input-login input {
+        height: 52px;
+    }
+
+    .btn-login-principal,
+    .btn-criar-conta {
+        height: 52px;
+    }
+}/* =====================================================
+   AUTOR - DESIGN MODERNO
+   ===================================================== */
+
+.painel-autor-moderno {
+    padding: 30px 22px 35px;
+}
+
+/* CABEÇALHO */
+
+.autor-cabecalho {
+    text-align: center;
+    padding: 5px 10px 24px;
+}
+
+.autor-foto {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 15px;
+
+    border-radius: 24px;
+    overflow: hidden;
+
+    background: #e9f6ee;
+
+    border: 3px solid #ffffff;
+
+    box-shadow:
+        0 8px 22px rgba(21, 148, 91, 0.18);
+}
+
+.autor-foto img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+.autor-cabecalho h2 {
+    margin: 0;
+
+    color: #173c2b;
+
+    font-size: 23px;
+    font-weight: 800;
+
+    line-height: 1.25;
+}
+
+.autor-cargo {
+    margin: 7px 0 0;
+
+    color: #15945b;
+
+    font-size: 14px;
+    font-weight: 650;
+}
+
+/* DADOS */
+
+.dados-autor {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    margin-top: 4px;
+}
+
+.dado-autor {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+
+    padding: 15px;
+
+    border-radius: 17px;
+
+    background: #f5faf7;
+
+    border: 1px solid #e1eee6;
+}
+
+.icone-dado {
+    flex: 0 0 38px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #e2f4e9;
+
+    font-size: 18px;
+}
+
+.dado-autor strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #24342c;
+
+    font-size: 14px;
+}
+
+.dado-autor span {
+    display: block;
+
+    color: #6d7972;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+/* CONTACTOS */
+
+.contactos-autor {
+    margin-top: 22px;
+}
+
+.contactos-autor h3,
+.sobre-mozsaber h3 {
+    margin: 0 0 11px;
+
+    color: #24342c;
+
+    font-size: 16px;
+    font-weight: 750;
+}
+
+.contacto-autor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 14px 15px;
+    margin-bottom: 9px;
+
+    border-radius: 15px;
+
+    text-decoration: none;
+
+    background: #f5faf7;
+
+    border: 1px solid #e1eee6;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.contacto-autor:hover {
+    background: #eaf7ef;
+    border-color: #b9ddc8;
+}
+
+.contacto-autor span {
+    color: #69766f;
+    font-size: 13px;
+}
+
+.contacto-autor strong {
+    color: #15945b;
+    font-size: 14px;
+}
+
+/* SOBRE O MOZSABER */
+
+.sobre-mozsaber {
+    margin-top: 22px;
+
+    padding: 17px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #edf9f2,
+            #f8fcfa
+        );
+
+    border: 1px solid #dceee3;
+}
+
+.sobre-titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 9px;
+}
+
+.sobre-titulo span {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #15945b;
+
+    color: white;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.sobre-titulo h3 {
+    margin: 0;
+}
+
+.sobre-mozsaber p {
+    margin: 0;
+
+    color: #65736b;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+/* TELEMÓVEIS PEQUENOS */
+
+@media (max-width: 380px) {
+
+    .painel-autor-moderno {
+        padding: 25px 17px 30px;
+    }
+
+    .autor-foto {
+        width: 78px;
+        height: 78px;
+
+        border-radius: 21px;
+    }
+
+    .autor-cabecalho h2 {
+        font-size: 20px;
+    }
+
+    .contacto-autor {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+    }
+}/* =====================================================
+   MOZSABER — POLIMENTO VISUAL DO DASHBOARD
+   Não altera funcionalidades
+   ===================================================== */
+
+#paginaInicio {
+    background: #f5f9f7;
+}
+
+/* Cabeçalho */
+#paginaInicio .cabecalho,
+#paginaInicio .header {
+    border-radius: 0 0 28px 28px;
+    padding: 24px 22px 28px;
+}
+
+/* Título principal */
+#paginaInicio h1,
+#paginaInicio h2 {
+    letter-spacing: -0.4px;
+}
+
+/* Botão principal — Criar Plano */
+#btnCriarPlanoDashboard {
+    min-height: 60px;
+    border-radius: 18px;
+    margin: 18px auto 20px;
+    font-size: 16px;
+    font-weight: 800;
+    box-shadow: 0 8px 20px rgba(21, 148, 91, 0.18);
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+#btnCriarPlanoDashboard:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 11px 24px rgba(21, 148, 91, 0.23);
+}
+
+/* Atalhos */
+#atalhoPlano,
+#atalhoPerfil,
+#atalhoMeusPlanos,
+#atalhoRecursos {
+    border-radius: 17px;
+    min-height: 82px;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+}
+
+#atalhoPlano:hover,
+#atalhoPerfil:hover,
+#atalhoMeusPlanos:hover,
+#atalhoRecursos:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(35, 70, 52, 0.08);
+}
+
+/* Cartões principais */
+#cartaoPlanos,
+#cartaoBiblioteca {
+    border-radius: 22px;
+    min-height: 150px;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+#cartaoPlanos:hover,
+#cartaoBiblioteca:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(35, 70, 52, 0.09);
+}
+
+/* Texto dos cartões */
+#cartaoPlanos h3,
+#cartaoBiblioteca h3 {
+    letter-spacing: -0.2px;
+}
+
+#cartaoPlanos p,
+#cartaoBiblioteca p {
+    line-height: 1.55;
+}
+
+/* Barra inferior */
+#paginaInicio .bottom-nav {
+    border-top: 1px solid #e4ece7;
+    background: rgba(255, 255, 255, 0.97);
+}
+
+/* Toque visual nos itens activos */
+#paginaInicio .bottom-nav .ativo,
+#paginaInicio .bottom-nav .active {
+    color: #15945b;
+}
+
+/* Ecrãs pequenos */
+@media (max-width: 600px) {
+
+    #paginaInicio {
+        padding-bottom: 82px;
+    }
+
+    #btnCriarPlanoDashboard {
+        width: calc(100% - 30px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #cartaoPlanos,
+    #cartaoBiblioteca {
+        min-height: 140px;
+    }
+}
+    
+/* Garantia visual da barra inferior e ícones SVG */
+.barra-inferior .item-nav { position: relative; }
+.barra-inferior .nav-icone { width: 24px; height: 24px; display:flex; align-items:center; justify-content:center; }
+.barra-inferior .nav-icone svg { width:21px; height:21px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.barra-inferior .item-nav-ativo .nav-icone svg { stroke-width:2.2; }
+
+/* =====================================================
+   CORREÇÃO FINAL — BARRA INFERIOR COMPLETA
+   ===================================================== */
+.barra-inferior {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 5px 12px calc(5px + env(safe-area-inset-bottom)) !important;
+    height: 70px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    gap: 0 !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+    transform: none !important;
+}
+
+.barra-inferior .item-nav {
+    flex: 1 1 25% !important;
+    width: 25% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 58px !important;
+    margin: 0 !important;
+    padding: 5px 3px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+}
+
+.barra-inferior .item-nav > span:last-child {
+    display: block !important;
+    white-space: nowrap !important;
+}
+
+.barra-inferior .nav-icone {
+    display: flex !important;
+    width: 24px !important;
+    height: 24px !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.barra-inferior .nav-icone svg {
+    display: block !important;
+    width: 21px !important;
+    height: 21px !important;
+}
+
+
+/* ======================================================
+   DASHBOARD — REFINAMENTO VISUAL PROFISSIONAL
+   Etapa 1: cabeçalho, CTA, atalhos e cartões
+   ====================================================== */
+
+#paginaInicio {
+    min-height: 100vh;
+    background: #f4f8f5;
+    padding-bottom: 84px;
+}
+
+#paginaInicio .cabecalho-dashboard {
+    position: relative;
+    overflow: hidden;
+    padding: 30px 22px 34px;
+    background: linear-gradient(145deg, #ffffff 0%, #f5fbf7 100%);
+    border-bottom-left-radius: 34px;
+    border-bottom-right-radius: 34px;
+    border-bottom: 1px solid #e4eee8;
+}
+
+#paginaInicio .cabecalho-dashboard::after {
+    content: "";
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    right: -65px;
+    top: -85px;
+    border-radius: 50%;
+    background: #e4f5eb;
+    pointer-events: none;
+}
+
+#paginaInicio .cabecalho-dashboard > div {
+    position: relative;
+    z-index: 1;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+#paginaInicio .saudacao {
+    margin-bottom: 5px;
+    color: #6f7c74;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#paginaInicio .cabecalho-dashboard h1 {
+    margin: 0;
+    color: #138a53;
+    font-size: clamp(29px, 7vw, 35px);
+    line-height: 1.05;
+    font-weight: 850;
+    letter-spacing: -1.2px;
+}
+
+#paginaInicio .cabecalho-dashboard > div > p:last-child {
+    margin-top: 9px;
+    color: #65736b;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#paginaInicio .dashboard-conteudo {
+    max-width: 680px;
+    padding: 24px 18px 28px;
+}
+
+/* CTA */
+#paginaInicio .btn-criar-plano {
+    position: relative;
+    overflow: hidden;
+    min-height: 58px;
+    margin-bottom: 18px;
+    padding: 16px 20px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #117c4a 0%, #15945b 100%);
+    box-shadow: 0 10px 24px rgba(21, 148, 91, 0.18);
+    font-size: 16px;
+    letter-spacing: -0.1px;
+}
+
+#paginaInicio .btn-criar-plano::after {
+    content: "→";
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+#paginaInicio .btn-criar-plano:hover {
+    background: linear-gradient(135deg, #0d6b3f 0%, #138a53 100%);
+    box-shadow: 0 13px 28px rgba(21, 148, 91, 0.23);
+}
+
+/* ATALHOS */
+#paginaInicio .atalhos-dashboard {
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#paginaInicio .atalho {
+    position: relative;
+    min-height: 92px;
+    padding: 12px 7px 10px;
+    border: 1px solid #e1ebe5;
+    border-radius: 17px;
+    background: #ffffff;
+    box-shadow: 0 5px 15px rgba(20, 70, 45, 0.045);
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+#paginaInicio .atalho:hover {
+    transform: translateY(-2px);
+    border-color: #b9ddc8;
+    box-shadow: 0 8px 20px rgba(20, 70, 45, 0.08);
+}
+
+#paginaInicio .atalho .icone {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1px;
+    border-radius: 11px;
+    background: #eef8f2;
+    font-size: 18px;
+}
+
+#paginaInicio .atalho span {
+    color: #27342d;
+    font-size: 11.5px;
+    font-weight: 750;
+}
+
+/* CARTÕES */
+#paginaInicio .cartoes-dashboard {
+    gap: 14px;
+}
+
+#paginaInicio .cartao-dashboard {
+    min-height: 155px;
+    padding: 21px 21px 20px;
+    border: 1px solid #e5eee8;
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 7px 22px rgba(20, 70, 45, 0.065);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+#paginaInicio .cartao-dashboard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 11px 28px rgba(20, 70, 45, 0.09);
+}
+
+#paginaInicio .cartao-dashboard::after {
+    width: 105px;
+    height: 105px;
+    right: -30px;
+    bottom: -38px;
+    background: #e7f6ed;
+}
+
+#paginaInicio .cartao-dashboard .icone {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    background: #eef8f2;
+    font-size: 19px;
+}
+
+#paginaInicio .cartao-dashboard h3 {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 6px;
+    color: #1d2b24;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+#paginaInicio .cartao-dashboard p {
+    position: relative;
+    z-index: 1;
+    max-width: 280px;
+    color: #718078;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+/* Pequena seta visual */
+#paginaInicio .cartao-dashboard::before {
+    content: "›";
+    position: absolute;
+    z-index: 2;
+    left: 21px;
+    bottom: 13px;
+    color: #15945b;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+@media (max-width: 420px) {
+    #paginaInicio .cabecalho-dashboard {
+        padding: 26px 18px 30px;
+    }
+
+    #paginaInicio .dashboard-conteudo {
+        padding: 20px 14px 26px;
+    }
+
+    #paginaInicio .btn-criar-plano {
+        min-height: 56px;
+        font-size: 15px;
+    }
+
+    #paginaInicio .atalhos-dashboard {
+        gap: 7px;
+    }
+
+    #paginaInicio .atalho {
+        min-height: 88px;
+    }
+
+    #paginaInicio .cartao-dashboard {
+        min-height: 148px;
+    }
+}
+</style>
 </head>
 
 <body>
@@ -16,53 +1817,112 @@
     ========================== -->
     <section id="paginaLogin" class="pagina pagina-login">
 
-        <div class="logo-area">
-            <h1>MOZSABER</h1>
-            <p>Educação em Moçambique</p>
-        </div>
+    <div class="login-fundo">
 
-        <div class="card-login">
+        <div class="login-cartao">
 
-            <h2>Entrar</h2>
+            <!-- LOGO -->
+            <div class="login-logo-area">
+                <div class="login-logo">
+                    <span>MS</span>
+                </div>
 
-            <p class="descricao">
-                Entre na sua conta para continuar.
-            </p>
-
-            <label for="email">Email</label>
-
-            <input
-                type="email"
-                id="email"
-                placeholder="Digite o seu email"
-            >
-
-            <label for="password">Palavra-passe</label>
-
-            <input
-                type="password"
-                id="password"
-                placeholder="Digite a sua palavra-passe"
-            >
-
-            <button id="btnEntrar" class="btn-principal">
-                Entrar
-            </button>
-
-            <div id="mensagemAcesso" class="mensagem"></div>
-
-            <div class="separador">
-                <span>ou</span>
+                <h1>MOZSABER</h1>
+                <p>Educação em Moçambique</p>
             </div>
 
-            <button id="btnCriarConta" class="btn-secundario">
-                Criar conta
-            </button>
+            <!-- TÍTULO -->
+            <div class="login-titulo">
+                <h2>Entrar</h2>
+                <p>Entre na sua conta para continuar.</p>
+            </div>
+
+            <!-- FORMULÁRIO -->
+            <div class="login-formulario">
+
+                <!-- EMAIL -->
+                <div class="campo-login">
+                    <label for="email">
+                        <span class="icone-campo">✉</span>
+                        Email
+                    </label>
+
+                    <div class="input-login">
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Digite o seu email"
+                            autocomplete="email"
+                        >
+                    </div>
+                </div>
+
+                <!-- PALAVRA-PASSE -->
+                <div class="campo-login">
+                    <label for="password">
+                        <span class="icone-campo">🔒</span>
+                        Palavra-passe
+                    </label>
+
+                    <div class="input-login input-password">
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Digite a sua palavra-passe"
+                            autocomplete="current-password"
+                        >
+
+                        <button
+                            type="button"
+                            id="mostrarPassword"
+                            class="btn-mostrar-password"
+                            aria-label="Mostrar palavra-passe"
+                        >
+                            👁
+                        </button>
+                    </div>
+                </div>
+
+                <!-- MENSAGEM -->
+                <div id="mensagemAcesso" class="mensagem-acesso"></div>
+
+                <!-- ENTRAR -->
+                <button
+                    type="button"
+                    id="btnEntrar"
+                    class="btn-login-principal"
+                >
+                    <span>Entrar</span>
+                    <span class="seta-login">→</span>
+                </button>
+
+                <!-- SEPARADOR -->
+                <div class="login-separador">
+                    <span>ou</span>
+                </div>
+
+                <!-- CRIAR CONTA -->
+                <button
+                    type="button"
+                    id="btnCriarConta"
+                    class="btn-criar-conta"
+                >
+                    Criar conta
+                </button>
+
+            </div>
+
+            <!-- RODAPÉ -->
+            <div class="login-rodape">
+                <p>Aprender. Ensinar. Transformar.</p>
+                <span>© MozSaber</span>
+            </div>
 
         </div>
 
-    </section>
+    </div>
 
+</section>
 
     <!-- =========================
          PÁGINA 2 — INÍCIO / DASHBOARD
@@ -186,7 +2046,7 @@
                 class="item-nav item-nav-ativo"
                 id="navInicio"
             >
-                <span class="nav-icone">⌂</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-7h6v7"/></svg></span>
                 <span>Início</span>
             </button>
 
@@ -194,7 +2054,7 @@
                 class="item-nav"
                 data-abrir="biblioteca"
             >
-                <span class="nav-icone">▣</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span>
                 <span>Biblioteca</span>
             </button>
 
@@ -202,7 +2062,7 @@
                 class="item-nav"
                 data-abrir="conta"
             >
-                <span class="nav-icone">●</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></span>
                 <span>Minha conta</span>
             </button>
 
@@ -210,7 +2070,7 @@
                 class="item-nav"
                 data-abrir="autor"
             >
-                <span class="nav-icone">◉</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg></span>
                 <span>Autor</span>
             </button>
 
@@ -298,7 +2158,7 @@
                 class="item-nav"
                 id="navInicioPerfil"
             >
-                <span class="nav-icone">⌂</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-7h6v7"/></svg></span>
                 <span>Início</span>
             </button>
 
@@ -306,7 +2166,7 @@
                 class="item-nav"
                 data-abrir="biblioteca"
             >
-                <span class="nav-icone">▣</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span>
                 <span>Biblioteca</span>
             </button>
 
@@ -314,7 +2174,7 @@
                 class="item-nav"
                 data-abrir="conta"
             >
-                <span class="nav-icone">●</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></span>
                 <span>Minha conta</span>
             </button>
 
@@ -322,7 +2182,7 @@
                 class="item-nav"
                 data-abrir="autor"
             >
-                <span class="nav-icone">◉</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg></span>
                 <span>Autor</span>
             </button>
 
@@ -462,7 +2322,7 @@
                 class="item-nav"
                 id="navInicioGerador"
             >
-                <span class="nav-icone">⌂</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-7h6v7"/></svg></span>
                 <span>Início</span>
             </button>
 
@@ -470,7 +2330,7 @@
                 class="item-nav"
                 data-abrir="biblioteca"
             >
-                <span class="nav-icone">▣</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span>
                 <span>Biblioteca</span>
             </button>
 
@@ -478,7 +2338,7 @@
                 class="item-nav"
                 data-abrir="conta"
             >
-                <span class="nav-icone">●</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></span>
                 <span>Minha conta</span>
             </button>
 
@@ -486,7 +2346,7 @@
                 class="item-nav"
                 data-abrir="autor"
             >
-                <span class="nav-icone">◉</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg></span>
                 <span>Autor</span>
             </button>
 
@@ -581,42 +2441,41 @@
 
 
     <!-- =========================
-         AUTOR
-    ========================== -->
-    <div id="painelAutor" class="painel">
+     AUTOR
+========================== -->
+<div id="painelAutor" class="painel">
 
-        <div class="painel-conteudo">
+    <div class="painel-conteudo painel-autor-moderno">
 
-            <button class="btn-fechar" data-fechar="autor">
-                ×
-            </button>
+        <button class="btn-fechar" data-fechar="autor" aria-label="Fechar">
+            ×
+        </button>
 
-            <h2>Sobre o Autor</h2>
+        <!-- CABEÇALHO DO AUTOR -->
+        <div class="autor-cabecalho">
 
-            <div class="autor-info">
-
-                <div class="autor-avatar">
-                    FAMM
-                </div>
-
-                <h3>
-                    Fidel Agostinho Mário Manuel
-                </h3>
-
-                <p class="autor-cargo">
-                    Criador do MozSaber
-                </p>
-
+            <div class="autor-foto">
+                <img
+                    src="foto-autor-mozsaber-final.png"
+                    alt="Fidel Agostinho Mário Manuel"
+                >
             </div>
 
-            <div class="dados-autor">
+            <h2>Fidel Agostinho Mário Manuel</h2>
 
-                <div class="dado-autor">
-                    <strong>Data de nascimento</strong>
-                    <span>15 de Agosto de 2003</span>
-                </div>
+            <p class="autor-cargo">
+                Criador do MozSaber
+            </p>
 
-                <div class="dado-autor">
+        </div>
+
+        <!-- INFORMAÇÕES -->
+        <div class="dados-autor">
+
+            <div class="dado-autor">
+                <div class="icone-dado">📍</div>
+
+                <div>
                     <strong>Naturalidade</strong>
                     <span>
                         Província da Zambézia,
@@ -624,65 +2483,68 @@
                         Moçambique
                     </span>
                 </div>
+            </div>
 
-                <div class="dado-autor">
-                    <strong>Filiação</strong>
-                    <span>
-                        Filho de Agostinho Mário Manuel
-                        e de Angerta Constância Isaque.
-                    </span>
-                </div>
+            <div class="dado-autor">
+                <div class="icone-dado">🎓</div>
 
-                <div class="dado-autor">
+                <div>
                     <strong>Formação</strong>
                     <span>
-                        Formado no Instituto de Formação
-                        de Professores de Nicoadala
-                        (IFP-Nicoadala), no período de
-                        2023 a 2025.
+                        Instituto de Formação de Professores
+                        de Nicoadala (IFP-Nicoadala),
+                        2023–2025.
                     </span>
                 </div>
-
             </div>
 
-            <div class="contactos-autor">
+        </div>
 
-                <h3>Contactos</h3>
+        <!-- CONTACTOS -->
+        <div class="contactos-autor">
 
-                <a
-                    href="https://wa.me/258835348994"
-                    target="_blank"
-                >
-                    WhatsApp: 83 534 8994
-                </a>
+            <h3>Contactos</h3>
 
-                <a href="tel:+258877906354">
-                    Contacto: 87 790 6354
-                </a>
+            <a
+                href="https://wa.me/258835348994"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contacto-autor whatsapp"
+            >
+                <span>WhatsApp</span>
+                <strong>83 534 8994</strong>
+            </a>
 
-            </div>
+            <a
+                href="tel:+258877906354"
+                class="contacto-autor telefone"
+            >
+                <span>Contacto</span>
+                <strong>87 790 6354</strong>
+            </a>
 
-            <div class="sobre-mozsaber">
+        </div>
 
+        <!-- SOBRE O MOZSABER -->
+        <div class="sobre-mozsaber">
+
+            <div class="sobre-titulo">
+                <span>MS</span>
                 <h3>Sobre o MozSaber</h3>
-
-                <p>
-                    O MozSaber é um projecto dedicado à
-                    educação, criado com o objectivo de
-                    apoiar professores e formandos através
-                    de planos de aula, recursos didácticos
-                    e outros materiais educativos.
-                </p>
-
             </div>
 
-            <button class="opcao-painel">
-                Ajuda
-            </button>
+            <p>
+                O MozSaber é um projecto dedicado à educação,
+                criado para apoiar professores e formandos
+                através de planos de aula, recursos didácticos
+                e outros materiais educativos.
+            </p>
 
         </div>
 
     </div>
+
+</div>
 
 
     <!-- =========================
@@ -715,7 +2577,7 @@
                 class="item-nav"
                 id="navInicioResultado"
             >
-                <span class="nav-icone">⌂</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-7h6v7"/></svg></span>
                 <span>Início</span>
             </button>
 
@@ -723,7 +2585,7 @@
                 class="item-nav"
                 data-abrir="biblioteca"
             >
-                <span class="nav-icone">▣</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span>
                 <span>Biblioteca</span>
             </button>
 
@@ -731,7 +2593,7 @@
                 class="item-nav"
                 data-abrir="conta"
             >
-                <span class="nav-icone">●</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></span>
                 <span>Minha conta</span>
             </button>
 
@@ -739,7 +2601,7 @@
                 class="item-nav"
                 data-abrir="autor"
             >
-                <span class="nav-icone">◉</span>
+                <span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg></span>
                 <span>Autor</span>
             </button>
 
